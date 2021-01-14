@@ -1,42 +1,31 @@
 .container {
-  padding: 0 0.5rem;
-  /* height: 100%; */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-image: url('../public/imgs/bg-blue-white.png');
 }
 
 .main {
-  padding: 5rem 0;
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
-  margin-top: 3rem;
+  flex-direction: row;
+  align-items: center;
+}
+
+.content {
+  width: 50%;
+  padding: 2rem 24px;
+  padding-bottom: 2rem;
+}
+
+.banner {
+  padding: 2rem 0;
 }
 
 @media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
+  .content {
+    width: 100% !important;
+  }
+
+  .banner {
+    background-image: url('../public/imgs/bg-blue.png') !important;
   }
 }
