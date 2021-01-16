@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 export default function FourOhFour() {
   const router = useRouter();
@@ -10,20 +11,26 @@ export default function FourOhFour() {
   return (
     <div className="flex flex-col justify-center items-center bg-gray-50 h-4/5">
       <div className="flex flex-initial flex-row justify-center items-center">
-        <img 
-          src="./icons/4.png"
+        <Image 
+          src="/icons/4.png"
           className="iconFour"
           alt="4"
+          width={200}
+          height={200}
         />
-        <img 
-          src="./icon.png"
+        <Image
+          src="/icon.png"
           className="iconPokeball"
           alt="poke-ball"
+          width={200}
+          height={200}
         />
-        <img 
-          src="./icons/4.png"
+        <Image 
+          src="/icons/4.png"
           className="iconFour"
           alt="4"
+          width={200}
+          height={200}
         />
       </div>
       <div className="text-center md:p-4">

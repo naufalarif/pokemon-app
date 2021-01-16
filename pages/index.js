@@ -1,6 +1,13 @@
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleStart = () => {
+    router.push('/adventure');
+  }
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -18,7 +25,11 @@ export default function Home() {
             </span>
           </div>
           <div className="py-4">
-            <button className="rounded-3xl bg-blue-500 hover:bg-blue-700 py-2 px-8 text-gray-50 focus:outline-none">
+            <button 
+              type="button"
+              className="rounded-3xl bg-blue-500 hover:bg-blue-700 py-2 px-8 text-gray-50 focus:outline-none"
+              onClick={handleStart}
+            >
               Catch Your Pokemon Now
             </button>
           </div>
