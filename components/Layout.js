@@ -3,18 +3,18 @@ import Footer from './Footer';
 import styles from '../styles/Layout.module.css';
 import Navbar from './Navbar';
 
-export default function Layout({ children }) {
+export default function Layout({ children, active }) {
   return (
     <div className={styles.layout}>
       <Head>
-        <title>Pokemon App</title>
+        <title>Pokémon App</title>
         <link rel="icon" href="/icon.png" />
         <meta
           name="description"
-          content="Pokemon Game App"
+          content="Pokémon Game App"
         />
       </Head>
-      <Navbar />
+      <Navbar active={active}/>
       {children}
       <Footer />
     </div>

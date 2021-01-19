@@ -1,15 +1,33 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function Navbar() {
+export default function Navbar({ active }) {
+  const router = useRouter();
+
+  const handleNavigation = (path) => {
+    router.push(`/${path}`);
+  };
+  
+  const activeAdventure = active === "adventure" ? "text-blue-500 font-bold cursor-default" : "text-gray-500";
+  const activePokedex = active === "pokedex" ? "text-blue-500 font-bold cursor-default" : "text-gray-500";
+  const activeMyPokemon = active === "mypokemon" ? "text-blue-500 font-bold cursor-default" : "text-gray-500";
+  const activeHistory = active === "history" ? "text-blue-500 font-bold cursor-default" : "text-gray-500";
+
   return (
     <div className="relative bg-white">
       <div className="mx-auto">
         <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10 px-4 sm:px-6">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/">
-              <a>
-                <img className="h-8 w-auto sm:h-10" src="/imgs/logo.png" alt="" />
-              </a>
+              {/* <a> */}
+                <img 
+                  // className="h-8 w-auto sm:h-10" 
+                  width="100px"
+                  height="100px"
+                  src="/imgs/logo.png" 
+                  alt="" 
+                />
+              {/* </a> */}
             </Link>
           </div>
           <div className="-mr-2 -my-2 md:hidden">
@@ -20,16 +38,17 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
+          
           <nav className="hidden md:flex space-x-10">
             <div className="relative">
               <button 
                 type="button" 
-                className="group bg-white rounded-md text-gray-500 
+                onClick={() => handleNavigation('adventure')}
+                className={`group bg-white rounded-md ${activeAdventure}
                   inline-flex items-center 
                   text-base font-medium 
-                  hover:text-blue-900 hover:bg-blue-100
-                  focus:bg-blue-100 focus:outline-none 
-                  md:px-2 md:py-2"
+                  hover:text-blue-500 focus:outline-none 
+                  md:px-2 md:py-2`}
               >
                 <span>Adventure</span>
               </button>
@@ -38,25 +57,40 @@ export default function Navbar() {
             <div className="relative">
               <button 
                 type="button" 
-                className="group bg-white rounded-md text-gray-500 inline-flex 
-                  items-center 
+                onClick={() => handleNavigation('pokedex')}
+                className={`group bg-white rounded-md ${activePokedex}
+                  inline-flex items-center 
                   text-base font-medium 
-                  hover:text-blue-900 hover:bg-blue-100
-                  focus:bg-blue-100 focus:outline-none 
-                  md:px-2 md:py-2"
+                  hover:text-blue-500 focus:outline-none 
+                  md:px-2 md:py-2`}
               >
-                <span>My Pokemon</span>
+                <span>Pokédex</span>
               </button>
             </div>
 
             <div className="relative">
               <button 
                 type="button" 
-                className="group bg-white rounded-md text-gray-500 inline-flex 
-                  items-center text-base font-medium 
-                  hover:text-blue-900 hover:bg-blue-100
-                  focus:bg-blue-100 focus:outline-none 
-                  md:px-2 md:py-2"
+                onClick={() => handleNavigation('my-pokemon')}
+                className={`group bg-white rounded-md ${activeMyPokemon}
+                  items-center inline-flex 
+                  text-base font-medium 
+                  hover:text-blue-500 focus:outline-none 
+                  md:px-2 md:py-2`}
+              >
+                <span>My Pokémon</span>
+              </button>
+            </div>
+
+            <div className="relative">
+              <button 
+                type="button" 
+                onClick={() => handleNavigation('history')}
+                className={`group bg-white rounded-md ${activeHistory} 
+                  items-center inline-flex 
+                  text-base font-medium 
+                  hover:text-blue-500 focus:outline-none 
+                  md:px-2 md:py-2`}
               >
                 <span>History</span>
               </button>

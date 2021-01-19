@@ -9,7 +9,7 @@ export default function ListPokemon({ url }) {
 
   return (
     <>
-      <div className="grid grid-cols-5 md:grid-cols-5  gap-4 px-4 pb-7 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-5  gap-4 pb-7 mb-2">
         {data.pokemon.map((item, idx) => <CardPokemon key={idx} url={item.pokemon.url} />)}
       </div>
       <div className="px-5 pb-7">

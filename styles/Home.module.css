@@ -20,6 +20,11 @@
   padding: 2rem 0;
 }
 
+.banner > img {
+  width: 92%;
+  height: 92%;
+}
+
 @media (max-width: 600px) {
   .content {
     width: 100% !important;

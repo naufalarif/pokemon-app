@@ -10,7 +10,12 @@ export default function Footer() {
           rel="noopener noreferrer"
         >
           Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+          <img 
+            width="80px"
+            height="80px"
+            src="/vercel.svg" 
+            alt="Vercel Logo" 
+          />
         </a>
       </footer>
     </>
