@@ -8,26 +8,24 @@ export default function Navbar({ active }) {
     router.push(`/${path}`);
   };
   
-  const activeAdventure = active === "adventure" ? "text-blue-500 font-bold cursor-default" : "text-gray-500";
-  const activePokedex = active === "pokedex" ? "text-blue-500 font-bold cursor-default" : "text-gray-500";
-  const activeMyPokemon = active === "mypokemon" ? "text-blue-500 font-bold cursor-default" : "text-gray-500";
-  const activeHistory = active === "history" ? "text-blue-500 font-bold cursor-default" : "text-gray-500";
+  const activeAdventure = active === "adventure" ? "text-blue-500 font-extrabold cursor-default" : "text-gray-500 font-bold";
+  const activePokedex = active === "pokedex" ? "text-blue-500 font-extrabold cursor-default" : "text-gray-500 font-bold";
+  const activeMyPokemon = active === "mypokemon" ? "text-blue-500 font-extrabold cursor-default" : "text-gray-500 font-bold";
+  const activeHistory = active === "history" ? "text-blue-500 font-extrabold cursor-default" : "text-gray-500 font-bold";
 
   return (
-    <div className="relative bg-white">
+    <div className="sticky top-0 z-50 bg-white">
       <div className="mx-auto">
         <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10 px-4 sm:px-6">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/">
-              {/* <a> */}
-                <img 
-                  // className="h-8 w-auto sm:h-10" 
-                  width="100px"
-                  height="100px"
-                  src="/imgs/logo.png" 
-                  alt="" 
-                />
-              {/* </a> */}
+              <img 
+                // className="h-8 w-auto sm:h-10" 
+                width="100px"
+                height="100px"
+                src="/imgs/logo.png" 
+                alt="" 
+              />
             </Link>
           </div>
           <div className="-mr-2 -my-2 md:hidden">

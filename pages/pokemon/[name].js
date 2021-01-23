@@ -1,21 +1,31 @@
-import { useRouter } from 'next/router';
-import { getDetailPokemon, getDetailPokemonByName, getEvolutionPokemon, getPokemonByName } from '../../services/api';
+import Image from 'next/image';
+import { getDetailPokemonByName, getEvolutionPokemon, getPokemonByName } from '../../services/api';
 import Loading from '../../components/Loading';
 import Layout from '../../components/Layout';
-import { Radar } from 'react-chartjs-2';
+import DetailAbility from '../../components/DetailAbility';
+import DetailTypes from '../../components/DetailTypes';
 import { extractNumber, firstUpperCase, removeSymbol } from '../../utils/textFormat';
 
 export default function DetailPokemon({ data }) {
-  const { data: chain, isLoading, isError } = getEvolutionPokemon(data.id);
+  const detailAbility = data.abilities.map((item, idx) => <DetailAbility key={idx} url={item.ability.url}/>);
+  const detailTypes = data.types.map((item, idx) => <DetailTypes key={idx} url={item.type.url} />);
 
-  const dataEvolution = isLoading ? 'Loading' : !isLoading && !isError ? chain : 'something worng...'
-
-  const abilities = data.abilities.map((item, idx) => 
-    <div><span key={idx} className="mx-2">{firstUpperCase(removeSymbol(item.ability.name))}</span></div>)
-  const types = data.types.map((item, idx) => 
-    <span key={idx} className="text-2xl font-bold text-gray-400 mr-2">{firstUpperCase(item.type.name)}</span>)
+  const types = data.types.map((item, idx) => {
+    const divider = idx + 1 === data.types.length ? '' : '/';
+    return <span key={idx} className="text-2xl font-bold text-gray-400 mr-2">{`${firstUpperCase(item.type.name)} ${divider}`}</span>})
   const stats = data.stats.map((item, idx) => 
     <p key={idx} className="mx-2">{firstUpperCase(removeSymbol(item.stat.name))}: {item.base_stat}</p>)
+
+  const handleGacha = () => {
+    const randomNumber = Math.random() * 10;
+    const rate = 8.5;
+    const success = randomNumber > rate;
+    if (success) {
+      localStorage.setItem(data.name);
+    } else {
+      
+    }
+  }
 
   return (
     <Layout active="pokedex">
@@ -36,56 +46,93 @@ export default function DetailPokemon({ data }) {
           </div>
         </div>
         
-        <div className="flex flex-row">
-          <div className="bg-white rounded-xl p-3 my-2 mr-7 w-2/4">
-            <div className="text-center py-2 mb-2 border-b-2">
-              <span className="text-gray-500 font-bold text-xl cursor-default">Ability</span>
-            </div>
-            {abilities}
+        <div className="flex grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-7 pb-7 mb-1">
+          {/* Left */}
+          <div>
+           {detailTypes}
           </div>
-          <div className="bg-white rounded-xl p-3 my-2 w-2/4">
-            <div className="text-center py-2 mb-2 border-b-2">
-              <span className="text-gray-500 font-bold text-xl">Stats</span>
+
+          {/* Right */}
+          <div>
+            {/* Ability */}
+            <div className="bg-white rounded-xl p-3 my-2">
+              <div className="text-center py-2 mb-3 border-b-2">
+                <span className="text-gray-500 font-bold text-2xl cursor-default">Ability</span>
+              </div>
+              {detailAbility}
             </div>
-            {stats}
+
+            {/* Stats */}
+            <div className="bg-white rounded-xl p-3 my-2">
+              <div className="text-center py-2 mb-2 border-b-2">
+                <span className="text-gray-500 font-bold text-2xl">Stats</span>
+              </div>
+              {stats}
+            </div>
+
+            {/* Base */}
+            <div className="bg-white rounded-xl p-3 my-2">
+              <span>Weight: {data.weight}</span><br/>
+              <span>Base Exp: {data.base_experience}</span>
+            </div>
+
+            {/* Image */}
+            <div className="flex flex-row bg-white rounded-xl p-3 my-2">
+              <img 
+                src={data.sprites.other.dream_world.front_default}
+                width="100px"
+                height="100px"
+                alt="pokemon"
+              />
+            </div>
+
+            {/* Form */}
+            <div className="flex flex-row bg-white rounded-xl p-3 my-2">
+              <img 
+                src={data.sprites.back_default}
+                width="100px"
+                height="100px"
+                alt="pokemon"
+              />
+              <img 
+                src={data.sprites.front_default}
+                width="100px"
+                height="100px"
+                alt="pokemon"
+              />
+              <img 
+                src={data.sprites.front_shiny}
+                width="100px"
+                height="100px"
+                alt="pokemon"
+              />
+              <img 
+                src={data.sprites.back_shiny}
+                width="100px"
+                height="100px"
+                alt="pokemon"
+              />
+            </div>
+          
+            {/* Gacha */}
+            <div className="flex flex-col bg-white rounded-xl p-3 my-2 justify-center items-center">
+              <Image 
+                src="/icon.png"
+                width={200}
+                height={200}
+                alt="pokeball"
+              />
+              <button  
+                type="button"
+                onClick={handleGacha}
+                className="
+                  rounded-3xl bg-red-500 hover:bg-red-700 py-2 px-8 text-gray-50 focus:outline-none
+                  font-extrabold my-4
+                ">
+                  Catch Pokémon
+              </button>
+            </div>
           </div>
-        </div>
-        
-        <span>Weight: {data.weight}</span><br/>
-        <span>Base Exp: {data.base_experience}</span>
-        <div className="flex flex-row">
-          <img 
-            src={data.sprites.other.dream_world.front_default}
-            width="100px"
-            height="100px"
-            alt="pokemon"
-          />
-        </div>
-        <div className="flex flex-row">
-          <img 
-            src={data.sprites.back_default}
-            width="100px"
-            height="100px"
-            alt="pokemon"
-          />
-          <img 
-            src={data.sprites.front_default}
-            width="100px"
-            height="100px"
-            alt="pokemon"
-          />
-          <img 
-            src={data.sprites.front_shiny}
-            width="100px"
-            height="100px"
-            alt="pokemon"
-          />
-          <img 
-            src={data.sprites.back_shiny}
-            width="100px"
-            height="100px"
-            alt="pokemon"
-          />
         </div>
       </main>
     </Layout>

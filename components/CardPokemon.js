@@ -21,10 +21,7 @@ export default function CardPokemon({ url }) {
   }
 
   const handleNavigation = () => {
-    router.push({
-      pathname: `/pokemon/${data.name}`,
-      query: { pid: data.id }
-    })
+    router.push({ pathname: `/pokemon/${data.name}` });
   }
 
   // Check Image

@@ -13,6 +13,26 @@ export function getAbilityCategory(url) {
   }
 }
 
+export function getDetailAbility(url) {
+  const { data, error } = useSWR(`${url}`, fetcher);
+
+  return {
+    dataAbility: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+
+export function getDetailTypes(url) {
+  const { data, error } = useSWR(`${url}`, fetcher);
+
+  return {
+    dataTypes: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+
 export function getPokemonList(url) {
   const { data, error } = useSWR(`${url}`, fetcher);
 
