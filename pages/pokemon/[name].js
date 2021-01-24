@@ -5,8 +5,69 @@ import Layout from '../../components/Layout';
 import DetailAbility from '../../components/DetailAbility';
 import DetailTypes from '../../components/DetailTypes';
 import { extractNumber, firstUpperCase, removeSymbol } from '../../utils/textFormat';
+import { useEffect, useState } from 'react';
 
 export default function DetailPokemon({ data }) {
+  const [pokemon, setPokemon] = useState([])
+
+  useEffect(() => {
+    const getHistory = () => {
+      const data = JSON.parse(localStorage.getItem('history'));
+      setPokemon(data)
+    }
+
+    getHistory();
+  }, []);
+
+  const handleGacha = () => {
+    let dataHistory = {};
+    let arrHistory = [];
+
+    const randomNumber = Math.random() * 10;
+    const success = randomNumber > 8.7;
+    const date = new Date();
+
+    if (success) {
+      if (!localStorage.getItem('history')) {
+        dataHistory = { 
+          date: date.toString(), 
+          data: data.name, 
+          status: true 
+        };
+        arrHistory.push(dataHistory);
+        localStorage.setItem('history', JSON.stringify(arrHistory))
+      } else {
+        const history = JSON.parse(localStorage.getItem('history'));
+        dataHistory = {
+          date: date.toString(),
+          data: data.name,
+          status: true
+        }
+        history.push(dataHistory);
+        localStorage.setItem('history', JSON.stringify(history));
+      }
+    } else {
+      if (!localStorage.getItem('history')) {
+        dataHistory = { 
+          date: date.toString(), 
+          data: data.name, 
+          status: false 
+        };
+        arrHistory.push(dataHistory);
+        localStorage.setItem('history', JSON.stringify(arrHistory))
+      } else {
+        const history = JSON.parse(localStorage.getItem('history'));
+        dataHistory = {
+          date: date.toString(),
+          data: data.name,
+          status: false
+        }
+        history.push(dataHistory);
+        localStorage.setItem('history', JSON.stringify(history));
+      }
+    }
+  }
+
   const detailAbility = data.abilities.map((item, idx) => <DetailAbility key={idx} url={item.ability.url}/>);
   const detailTypes = data.types.map((item, idx) => <DetailTypes key={idx} url={item.type.url} />);
 
@@ -15,17 +76,25 @@ export default function DetailPokemon({ data }) {
     return <span key={idx} className="text-2xl font-bold text-gray-400 mr-2">{`${firstUpperCase(item.type.name)} ${divider}`}</span>})
   const stats = data.stats.map((item, idx) => 
     <p key={idx} className="mx-2">{firstUpperCase(removeSymbol(item.stat.name))}: {item.base_stat}</p>)
+  
+  const checkPokemon = pokemon.filter(item => item.data === data.name && item.status === true);
 
-  const handleGacha = () => {
-    const randomNumber = Math.random() * 10;
-    const rate = 8.5;
-    const success = randomNumber > rate;
-    if (success) {
-      localStorage.setItem(data.name);
-    } else {
-      
-    }
-  }
+  const displayButton = checkPokemon.length <= 0
+    ? <button type="button"
+        onClick={handleGacha}
+        className="
+          rounded-3xl bg-red-500 hover:bg-red-700 py-2 px-8 text-gray-50 focus:outline-none
+          font-extrabold my-4
+        ">
+          Catch Pokémon
+      </button>
+    : <button type="button" 
+        className="
+          rounded-3xl bg-gray-500 py-2 px-8 text-gray-50 focus:outline-none
+          font-extrabold my-4 cursor-default
+      ">
+          Owned
+      </button>
 
   return (
     <Layout active="pokedex">
@@ -122,15 +191,7 @@ export default function DetailPokemon({ data }) {
                 height={200}
                 alt="pokeball"
               />
-              <button  
-                type="button"
-                onClick={handleGacha}
-                className="
-                  rounded-3xl bg-red-500 hover:bg-red-700 py-2 px-8 text-gray-50 focus:outline-none
-                  font-extrabold my-4
-                ">
-                  Catch Pokémon
-              </button>
+              {displayButton}
             </div>
           </div>
         </div>
