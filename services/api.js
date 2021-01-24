@@ -89,3 +89,12 @@ export function getHistoryGacha(name) {
     isError: error, 
   }
 }
+
+export function getPokemonById(id) {
+  const { data, error } = useSWR(`${config.apiURL}/pokemon/${id}`, fetcher);
+  return {
+    data: data,
+    isLoading: !data && !error,
+    isError: error
+  }
+}

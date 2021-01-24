@@ -7,16 +7,14 @@ export default function MyPokemon() {
 
   useEffect(() => {
     const getHistory = () => {
-      const data = JSON.parse(localStorage.getItem('history'));
+      const data = JSON.parse(localStorage.getItem('mine'));
       setData(data);
     };
 
     getHistory();
   }, []);
 
-  const filterMyPokemon = data.filter(item => item.status === true);
-
-  const myPokemonList = !data ? <span>Empty</span> : filterMyPokemon.map((item, idx) => <CardMyPokemon key={idx} payload={item} />);
+  const myPokemonList = !data || data.length <= 0 ? <span>Empty</span> : data.map((item, idx) => <CardMyPokemon key={idx} payload={item} />);
 
   return (
     <Layout active="mypokemon">

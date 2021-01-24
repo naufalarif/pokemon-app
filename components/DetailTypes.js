@@ -1,6 +1,6 @@
 import { getDetailTypes } from "../services/api";
 import { firstUpperCase, removeSymbol } from "../utils/textFormat";
-import pokemonTypes from "../utils/pokemonTypes";
+import { extractTypes } from "../utils/pokemonTypes";
 
 export default function DetailTypes({ url }) {
   const { dataTypes, isLoading, isError } = getDetailTypes(url);
@@ -9,7 +9,7 @@ export default function DetailTypes({ url }) {
   if (isError) return <span>Something wrong...</span>
 
   const typesName = firstUpperCase(removeSymbol(dataTypes.name));
-  const typeCheck = pokemonTypes(dataTypes.name);
+  const typeCheck = extractTypes(dataTypes.name);
   const doubleDamageFrom = 
     dataTypes.damage_relations.double_damage_from.length > 0 
       ? <div className="bg-white rounded-xl p-3 my-4">
@@ -21,7 +21,7 @@ export default function DetailTypes({ url }) {
             gap-4 pb-2 mb-1 w-4/5
           ">
             {dataTypes.damage_relations.double_damage_from.map((item, idx) => {
-              const typeCheck = pokemonTypes(item.name);
+              const typeCheck = extractTypes(item.name);
               return <div key={idx} className={`${typeCheck} px-3 py-2 rounded-3xl font-bold text-center`}>
                 <span className="text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
               </div>})}
@@ -40,7 +40,7 @@ export default function DetailTypes({ url }) {
             gap-4 pb-2 mb-1 w-4/5
           ">
             {dataTypes.damage_relations.half_damage_from.map((item, idx) => {
-              const typeCheck = pokemonTypes(item.name);
+              const typeCheck = extractTypes(item.name);
               return <div key={idx} className={`${typeCheck} px-3 py-2 rounded-3xl font-bold text-center`}>
                 <span className="text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
               </div>})}
@@ -59,7 +59,7 @@ export default function DetailTypes({ url }) {
             gap-4 pb-2 mb-1 w-4/5
           ">
             {dataTypes.damage_relations.double_damage_to.map((item, idx) => {
-              const typeCheck = pokemonTypes(item.name);
+              const typeCheck = extractTypes(item.name);
               return <div key={idx} className={`${typeCheck} px-3 py-2 rounded-3xl font-bold text-center`}>
                 <span className="text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
               </div>})}
@@ -78,7 +78,7 @@ export default function DetailTypes({ url }) {
             gap-4 pb-2 mb-1 w-4/5
           ">
             {dataTypes.damage_relations.half_damage_to.map((item, idx) => {
-              const typeCheck = pokemonTypes(item.name);
+              const typeCheck = extractTypes(item.name);
               return <div key={idx} className={`${typeCheck} px-3 py-2 rounded-3xl font-bold text-center`}>
                 <span className="text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
               </div>})}

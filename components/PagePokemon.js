@@ -1,4 +1,3 @@
-import config from "../config";
 import { getPokemonList } from "../services/api";
 import CardPokemon from "./CardPokemon";
 import Loading from "./Loading";

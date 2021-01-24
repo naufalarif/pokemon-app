@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 export default function Navbar({ active }) {
@@ -19,12 +20,11 @@ export default function Navbar({ active }) {
         <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10 px-4 sm:px-6">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/">
-              <img 
-                // className="h-8 w-auto sm:h-10" 
-                width="100px"
-                height="100px"
+              <Image
+                width={100}
+                height={45}
                 src="/imgs/logo.png" 
-                alt="" 
+                alt="logo" 
               />
             </Link>
           </div>

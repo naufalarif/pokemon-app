@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-// Config
-import pokemonTypes from '../utils/pokemonTypes';
+// Utils
+import { extractTypes } from '../utils/pokemonTypes';
 import { firstUpperCase, removeSymbol } from '../utils/textFormat';
 import { getDetailPokemon } from '../services/api';
 
@@ -30,7 +30,7 @@ export default function CardPokemon({ url }) {
 
   // Loop Types
   const types = data.types.map((item, idx) => {
-    const typeCheck = pokemonTypes(item.type.name);
+    const typeCheck = extractTypes(item.type.name);
     return <div key={idx} className={`mx-1 mb-1 ${typeCheck} px-3 py-1 rounded-xl font-bold`}>
         {firstUpperCase(item.type.name)}
       </div>

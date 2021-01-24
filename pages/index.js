@@ -6,7 +6,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleStart = () => {
-    router.push('/pokedex');
+    router.push('/adventure');
   }
 
   return (

@@ -1,0 +1,11 @@
+.adventure {
+  background-image: url('../public/imgs/bg-adventure.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,4 +1,4 @@
-export default function extractTypes(types) {
+export function extractTypes(types) {
   if (types === "normal") { return "bg-yellow-800 text-gray-50" }
   else if (types === "fighting") { return "bg-red-400 text-gray-50" }
   else if (types === "flying") { return "bg-blue-300 text-gray-50" }
@@ -17,4 +17,13 @@ export default function extractTypes(types) {
   else if (types === "dragon") { return "bg-purple-900 text-gray-50" }
   else if (types === "dark") { return "bg-gray-800 text-gray-50" }
   else if (types === "fairy") { return "bg-pink-500 text-gray-50" }
+}
+
+export function extractStats(types) {
+  if (types === "attack") { return "red" }
+  else if (types === "defense") { return "blue" }
+  else if (types === "hp") { return "green" }
+  else if (types === "special-attack") { return "pink" }
+  else if (types === "special-defense") { return "purple" }
+  else if (types === "speed") { return "green" }
 }

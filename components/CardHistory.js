@@ -1,8 +1,12 @@
 import Image from 'next/image';
+
+// Utils
 import { getHistoryGacha } from "../services/api";
 import { firstUpperCase, removeSymbol } from "../utils/textFormat";
+import { extractTypes } from '../utils/pokemonTypes';
+
+// Component
 import CardSkeleton from "./CardSkeleton";
-import pokemonTypes from '../utils/pokemonTypes';
 
 export default function CardHistory({ payload }) {
   const { data, isLoading, isError } = getHistoryGacha(payload.data);
@@ -19,7 +23,7 @@ export default function CardHistory({ payload }) {
 
   // Loop Types
   const types = data.types.map((item, idx) => {
-    const typeCheck = pokemonTypes(item.type.name);
+    const typeCheck = extractTypes(item.type.name);
     return <div key={idx} className={`mx-1 mb-1 ${typeCheck} px-3 py-1 rounded-xl font-bold`}>
         <span>{firstUpperCase(item.type.name)}</span>
       </div>
