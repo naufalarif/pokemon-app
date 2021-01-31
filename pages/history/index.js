@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CardHistory from "../../components/CardHistory";
 import Layout from "../../components/Layout";
+import { dateUtils } from "../../utils/textFormat";
 
 export default function History() {
   const [data, setData] = useState([]);
@@ -20,9 +21,14 @@ export default function History() {
   };
 
   const filterData = sort === null ? data 
-    : sort ? data.filter(item => item.status === true) : data.filter(item => item.status === false); 
+    : sort ? data.filter(item => item.status === true) 
+    : data.filter(item => item.status === false); 
 
-  const history = !data || filterData.length <= 0 ? <span>Empty</span> : filterData.map((item, idx) => <CardHistory key={idx} payload={item} />);
+  const history = !data || filterData.length <= 0 
+    ? <span>Empty</span> 
+    : filterData.map((item, idx) => 
+        <CardHistory key={idx} payload={item} />
+      );
   const filterSuccess = sort ? 'bg-blue-500 text-gray-100' : 'bg-gray-100 text-blue-500';
   const filterFailed = sort === false ? 'bg-blue-500 text-gray-100' : 'bg-gray-100 text-blue-500';
 
@@ -30,7 +36,7 @@ export default function History() {
     <Layout active="history">
       <div className="flex flex-col justify-center items-center">
         <h1 className="py-7 text-3xl font-extrabold text-gray-700">Gacha History</h1>
-        <div className="mb-5 flex items-center">
+        <div className="mb-1 flex items-center border-b-2 pb-6">
           <h4 className="font-extrabold text-gray-500 text-xl mr-3">Filter by</h4>
           <button
             className={`
@@ -63,7 +69,7 @@ export default function History() {
             X
           </button>
         </div>
-        <div className="w-11/12 md:w-2/6 lg:w-5/12 mb-7 border-t-2 pt-7">
+        <div className="md:w-2/6 lg:w-5/12 mb-7 pt-7">
           {history}
         </div>
       </div>

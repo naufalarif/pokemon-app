@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import styles from '../../styles/Adventure.module.css';
 import Layout from '../../components/Layout';
 import CardAdventure from '../../components/CardAdventure';
@@ -35,30 +36,34 @@ export default function Adventure() {
     }
   }
 
-  const lastIdx = current + 1 !== id.length ? 'bg-white hover:shadow-2xl' : 'bg-gray-500 cursor-default';
-  const firstIdx = current !== 0 ? 'bg-white hover:shadow-2xl' : 'bg-gray-500 cursor-default';
+  const lastIdx = current + 1 !== id.length 
+    ? 'bg-gray-50 hover:bg-gray-400 hover:bg-opacity-50 cursor-pointer' 
+    : 'bg-gray-600 cursor-default';
+  const firstIdx = current !== 0 
+    ? 'bg-gray-50 hover:bg-gray-400 hover:bg-opacity-50 cursor-pointer' 
+    : 'bg-gray-600 cursor-default';
 
   return (
     <Layout active="adventure">
       <div className={styles.adventure}>
-        <div className="p-4">
-          <button 
-            type="button"
-            onClick={handlePrev} 
-            className={`${firstIdx} rounded-3xl py-3 px-2 font-bold`}>
-              Prev
-          </button>
+        <div className={`p-1 md:p-4 ${firstIdx} bg-opacity-50`} onClick={handlePrev}>
+          <Image 
+            src="/icons/left.png"
+            alt="left"
+            width={50}
+            height={50}
+          />
         </div>
-        <div>
+        <div className="-mt-12">
           <CardAdventure id={id[current]} />
         </div>
-        <div className="p-4">
-          <button 
-            type="button"
-            onClick={handleNext} 
-            className={`${lastIdx} rounded-3xl py-3 px-2 font-bold`}>
-              Next
-          </button>
+        <div className={`p-1 md:p-4 ${lastIdx} bg-opacity-50`} onClick={handleNext}>
+          <Image 
+            src="/icons/right.png"
+            alt="right"
+            width={50}
+            height={50}
+          />
         </div>
       </div>
     </Layout>

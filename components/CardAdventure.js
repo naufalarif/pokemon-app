@@ -8,6 +8,7 @@ import { firstUpperCase, removeSymbol } from '../utils/textFormat';
 // Component
 import LoadingPokeball from './LoadingPokeball';
 import { Modal } from 'antd';
+import { imageConvert } from '../utils/imageUtils';
 
 
 const FailedState = () => {
@@ -82,7 +83,7 @@ export default function CardAdventure({ id }) {
       // Success Catch And History is Empty
       if (!localStorage.getItem('history')) {
         // Save to History
-        arrStore.push(dataStore);
+        arrStore.unshift(dataStore);
         localStorage.setItem('history', JSON.stringify(arrStore));
         
         // Save to Mine
@@ -90,7 +91,7 @@ export default function CardAdventure({ id }) {
           localStorage.setItem('mine', JSON.stringify(arrStore));
         } else {
           const mine = JSON.parse(localStorage.getItem('mine'));
-          mine.push(dataStore);
+          mine.unshift(dataStore);
           localStorage.setItem('mine', JSON.stringify(mine));
         }
 
@@ -112,16 +113,16 @@ export default function CardAdventure({ id }) {
         }
 
         // Save to History
-        history.push(dataStore);
+        history.unshift(dataStore);
         localStorage.setItem('history', JSON.stringify(history));
 
         // Save to Mine
         if (!localStorage.getItem('mine')) {
-          arrStore.push(dataStore);
+          arrStore.unshift(dataStore);
           localStorage.setItem('mine', JSON.stringify(arrStore));
         } else {
           const mine = JSON.parse(localStorage.getItem('mine'));
-          mine.push(dataStore);
+          mine.unshift(dataStore);
           localStorage.setItem('mine', JSON.stringify(mine));
         }
         
@@ -143,7 +144,7 @@ export default function CardAdventure({ id }) {
           data: data.name, 
           status: false 
         };
-        arrStore.push(dataStore);
+        arrStore.unshift(dataStore);
         localStorage.setItem('history', JSON.stringify(arrStore));
 
         setTimeout(() => {
@@ -160,7 +161,7 @@ export default function CardAdventure({ id }) {
           data: data.name,
           status: false
         }
-        history.push(dataStore);
+        history.unshift(dataStore);
         localStorage.setItem('history', JSON.stringify(history));
         
         setTimeout(() => {
@@ -178,7 +179,7 @@ export default function CardAdventure({ id }) {
 
   // Check Image
   const { dream_world: { front_default } } = data.sprites.other;
-  const img = front_default ? front_default : '/icon.png';
+  const img = imageConvert(front_default);
 
   const modalDesc = success && !failed ? <SuccessState /> : <FailedState />
   const showDesc = loading ? <LoadingPokeball /> : modalDesc
@@ -200,8 +201,8 @@ export default function CardAdventure({ id }) {
 
   return ( 
     <div className="flex flex-col justify-center">
-      <h4 className="text-3xl font-extrabold text-center text-white">{firstUpperCase(removeSymbol(data.name))}</h4>
-      <div>
+      <div className="-mt-8">
+        <h4 className="text-3xl font-extrabold text-center text-white">{firstUpperCase(removeSymbol(data.name))}</h4>
         <Image 
           loader={myLoader} 
           src={`${img}`} 
@@ -210,14 +211,15 @@ export default function CardAdventure({ id }) {
           height={300} 
         />
       </div>
-      <div className="text-center absolute bottom-0 left-0 right-0">
+      {/* Pokeball */}
+      <div className="text-center absolute bottom-0 left-0 right-0 -mb-8">
         <Image 
           className="cursor-pointer"
           onClick={handleGacha}
-          src='/icon.png' 
+          src='/imgs/pokeball.png' 
           alt='pokemon' 
-          width={100} 
-          height={100} 
+          width={200} 
+          height={200} 
         />
       </div>
 

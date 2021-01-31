@@ -19,7 +19,7 @@ export default function MyPokemon() {
   return (
     <Layout active="mypokemon">
       <div className="flex flex-col justify-center items-center">
-        <h1 className="py-7 text-3xl font-extrabold text-gray-700">My Pokemon</h1>
+        <h1 className="py-7 text-3xl font-extrabold text-gray-700">My Pokémon</h1>
         <div className="w-11/12 sm:w-3/5 lg:w-3/5 xl:w-2/6 mb-7 border-t-2 pt-7">
           {myPokemonList}
         </div>

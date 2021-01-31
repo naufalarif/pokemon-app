@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
@@ -13,7 +14,7 @@ export default function Home() {
     <Layout>
       <div className={styles.container}>
         <main className={styles.main}>
-          <content className={styles.content}>
+          <content id="content" className={styles.content}>
             <div className="mb-8">
               <h1 className="font-extrabold text-5xl mb-4">
                 Gotta Catch 'Em All!
@@ -29,17 +30,20 @@ export default function Home() {
             <div className="py-4">
               <button 
                 type="button"
-                className="rounded-3xl bg-blue-500 hover:bg-blue-700 py-2 px-8 text-gray-50 focus:outline-none"
+                className="rounded-3xl bg-blue-500 hover:bg-blue-700 py-2 px-8 text-gray-50 focus:outline-none font-extrabold"
                 onClick={handleStart}
               >
                 Catch Your Pokémon Now
               </button>
             </div>
           </content>
-          <div className={`${styles.content} ${styles.banner} justify-center align-center flex`}>
-            <img 
+
+          <div id="banner" className={`${styles.banner} justify-center align-center flex`}>
+            <Image 
               src="/imgs/charizard.png"
               alt="logo pokemon"
+              width={600}
+              height={600}
             />
           </div>
         </main>

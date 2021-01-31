@@ -44,7 +44,7 @@ export function getPokemonList(url) {
 }
 
 export function getDetailPokemon(url) {
-  const urlCheck = url ? url.includes('https') ? url : `https://pokeapi.co/api/v2/pokemon/${url}` : null;
+  const urlCheck = url ? url.includes('https') ? url : `${config.apiURL}/pokemon/${url}` : null;
   const { data, error } = useSWR(`${urlCheck}`, fetcher);
 
   return {
@@ -54,7 +54,7 @@ export function getDetailPokemon(url) {
   }
 }
 
-export async function getPokemonByName() {
+export async function getAllPokemon() {
   const res = await fetch(`${config.apiURL}/pokemon?limit=1118&offset=0`);
   const data = await res.json();
 
@@ -63,7 +63,7 @@ export async function getPokemonByName() {
   }));
 }
 
-export async function getDetailPokemonByName(name) {
+export async function getPokemonByName(name) {
   const res = await fetch(`${config.apiURL}/pokemon/${name}`);
   const data = await res.json();
 
@@ -92,6 +92,15 @@ export function getHistoryGacha(name) {
 
 export function getPokemonById(id) {
   const { data, error } = useSWR(`${config.apiURL}/pokemon/${id}`, fetcher);
+  return {
+    data: data,
+    isLoading: !data && !error,
+    isError: error
+  }
+}
+
+export function searchPokemonByName(name) {
+  const { data, error } = useSWR(`${config.apiURL}/pokemon/${name}`, fetcher);
   return {
     data: data,
     isLoading: !data && !error,

@@ -1,0 +1,79 @@
+@media (max-width: 1280px) {
+
+}
+
+@media (max-width: 1024px) {
+
+}
+
+/* md */
+@media (max-width: 768px) {
+  .ant-btn-icon-only {
+    padding: 8px !important;
+    width: 40px !important;
+    height: 46px !important;
+  }
+
+  .ant-input, .ant-btn-icon-only > *, .ant-input-clear-icon {
+    font-size: 18px !important;
+  }
+}
+
+/* sm */
+@media (max-width: 640px) {
+  .ant-btn-icon-only {
+    padding: 8px !important;
+    width: 35px !important;
+    height: 43px !important;
+  }
+
+  .ant-input, .ant-btn-icon-only > *, .ant-input-clear-icon {
+    font-size: 16px !important;
+  }
+
+  .ant-input-group {
+    width: 90% !important;
+  }
+
+  .ant-input-group-wrapper {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
+
+.ant-btn-icon-only {
+  padding: 8px;
+  width: 55px;
+  height: 55px;
+}
+
+.ant-btn {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+  border-top-left-radius: 26px !important;
+  border-bottom-left-radius: 26px !important;
+}
+
+.ant-input-affix-wrapper {
+  padding: 8px 24px !important;
+  width: 100%;
+}
+
+.ant-input, .ant-btn-icon-only > *, .ant-input-clear-icon {
+  font-size: 24px;
+}
+
+.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child {
+  border-top-right-radius: 26px !important;
+  border-bottom-right-radius: 26px !important;
+}
+
+.ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary) {
+  border-top-right-radius: 26px !important;
+  border-bottom-right-radius: 26px !important;
+}

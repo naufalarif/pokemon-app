@@ -10,6 +10,7 @@ export default function DetailAbility({ url }) {
   const filterLang = dataAbility.effect_entries.filter(item => item.language.name === 'en');
   const effectDetail = Object.assign({}, filterLang);
   const nameAbility = firstUpperCase(removeSymbol(dataAbility.name));
+  
   return (
     <div className="mb-6">
       <h4 className="text-2xl font-bold mb-2">{nameAbility}</h4>

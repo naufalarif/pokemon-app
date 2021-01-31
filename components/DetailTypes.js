@@ -14,16 +14,18 @@ export default function DetailTypes({ url }) {
     dataTypes.damage_relations.double_damage_from.length > 0 
       ? <div className="bg-white rounded-xl p-3 my-4">
           <div className="border-b-2 mb-4 py-3 px-4">
-            <h4 className="mb-2 text-xl font-extrabold text-gray-500">2x Damage From</h4>
+            <h4 className="mb-2 text-sm lg:text-lg xl:text-xl font-extrabold text-gray-500">
+              2x Damage From
+            </h4>
           </div>
-          <div className="flex grid grid-cols-2 
-            md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4
+          <div className="flex grid 
+            grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4
             gap-4 pb-2 mb-1 w-4/5
           ">
             {dataTypes.damage_relations.double_damage_from.map((item, idx) => {
               const typeCheck = extractTypes(item.name);
               return <div key={idx} className={`${typeCheck} px-3 py-2 rounded-3xl font-bold text-center`}>
-                <span className="text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
+                <span className="sm:text-sm lg:text-xl xl:text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
               </div>})}
           </div>
         </div>
@@ -33,16 +35,16 @@ export default function DetailTypes({ url }) {
     dataTypes.damage_relations.half_damage_from.length > 0 
       ? <div className="bg-white rounded-xl p-3 my-4">
           <div className="border-b-2 mb-4 py-3 px-4">
-            <h4 className="mb-2 text-xl font-extrabold text-gray-500">1/2 Damage From</h4>
+            <h4 className="mb-2 text-sm md:text-lg lg:text-xl font-extrabold text-gray-500">1/2 Damage From</h4>
           </div>
-          <div className="flex grid grid-cols-2 
-            md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4
+          <div className="flex grid 
+            grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4
             gap-4 pb-2 mb-1 w-4/5
           ">
             {dataTypes.damage_relations.half_damage_from.map((item, idx) => {
               const typeCheck = extractTypes(item.name);
               return <div key={idx} className={`${typeCheck} px-3 py-2 rounded-3xl font-bold text-center`}>
-                <span className="text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
+                <span className="sm:text-sm lg:text-xl xl:text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
               </div>})}
           </div>
         </div>
@@ -52,16 +54,16 @@ export default function DetailTypes({ url }) {
     dataTypes.damage_relations.double_damage_to.length > 0 
       ? <div className="bg-white rounded-xl p-3 my-4">
           <div className="border-b-2 mb-4 py-3 px-4">
-            <h4 className="mb-2 text-xl font-extrabold text-gray-500">2x Damage To</h4>
+            <h4 className="mb-2 text-sm md:text-lg lg:text-xl font-extrabold text-gray-500">2x Damage To</h4>
           </div>
-          <div className="flex grid grid-cols-2 
-            md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4
+          <div className="flex grid 
+            grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4
             gap-4 pb-2 mb-1 w-4/5
           ">
             {dataTypes.damage_relations.double_damage_to.map((item, idx) => {
               const typeCheck = extractTypes(item.name);
               return <div key={idx} className={`${typeCheck} px-3 py-2 rounded-3xl font-bold text-center`}>
-                <span className="text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
+                <span className="sm:text-sm lg:text-xl xl:text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
               </div>})}
           </div>
         </div>
@@ -71,16 +73,16 @@ export default function DetailTypes({ url }) {
     dataTypes.damage_relations.half_damage_to.length > 0 
       ? <div className="bg-white rounded-xl p-3 my-4">
           <div className="border-b-2 mb-4 py-3 px-4">
-            <h4 className="mb-2 text-xl font-extrabold text-gray-500">1/2 Damage To</h4>
+            <h4 className="mb-2 text-sm md:text-lg lg:text-xl font-extrabold text-gray-500">1/2 Damage To</h4>
           </div>
-          <div className="flex grid grid-cols-2 
-            md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4
+          <div className="flex grid 
+            grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4
             gap-4 pb-2 mb-1 w-4/5
           ">
             {dataTypes.damage_relations.half_damage_to.map((item, idx) => {
               const typeCheck = extractTypes(item.name);
               return <div key={idx} className={`${typeCheck} px-3 py-2 rounded-3xl font-bold text-center`}>
-                <span className="text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
+                <span className="sm:text-sm lg:text-xl xl:text-2xl font-extrabold">{firstUpperCase(item.name)}</span>
               </div>})}
           </div>
         </div>

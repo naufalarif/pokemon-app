@@ -32,7 +32,7 @@ export default function PaginationPokemon() {
   const totalPage = Math.floor(data.count / 20) + 1;
   const showNextBtn = data.next ? <button onClick={handleNextPagination} className="mx-3 focus:outline-none">Next</button> : null;
   const showPrevBtn = data.previous ? <button onClick={handlePrevPagination} className="mx-3 focus:outline-none">Prev</button> : null;
-  const displayPokemon = data.results.map((item, idx) => <CardPokemon key={idx} url={item.url} />)
+  const displayPokemon = data.results.map((item, idx) => <CardPokemon key={idx} url={item.url} />);
 
   return (
     <>
@@ -46,7 +46,7 @@ export default function PaginationPokemon() {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mb-7">
         <div className="text-center">
           {showPrevBtn}
           <span>{recentPage} - {totalPage}</span>

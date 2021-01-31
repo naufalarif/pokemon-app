@@ -1,36 +1,41 @@
 .container {
-  display: flex;
+  /* display: flex; */
   background-image: url('../public/imgs/bg-blue-white.png');
+  background-size: cover;
 }
 
 .main {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
-  align-items: center;
 }
 
 .content {
-  width: 50%;
+  /* width: 50%; */
   padding: 2rem 24px;
   padding-bottom: 2rem;
 }
 
 .banner {
-  padding: 2rem 0;
+  /* width: 50%; */
+  padding: 2rem 4rem;
 }
 
-.banner > img {
+/* .banner > img {
   width: 92%;
   height: 92%;
-}
+} */
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .content {
     width: 100% !important;
   }
 
   .banner {
     background-image: url('../public/imgs/bg-blue.png') !important;
+    background-size: cover;
+    background-repeat: repeat;
   }
 }

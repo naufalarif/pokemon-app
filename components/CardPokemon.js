@@ -8,6 +8,7 @@ import { getDetailPokemon } from '../services/api';
 
 // Components
 import CardSkeleton from './CardSkeleton';
+import { imageConvert } from '../utils/imageUtils';
 
 export default function CardPokemon({ url }) {
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function CardPokemon({ url }) {
 
   // Check Image
   const { dream_world: { front_default } } = data.sprites.other;
-  const img = front_default ? front_default : '/icon.png';
+  const img = imageConvert(front_default)
 
   // Loop Types
   const types = data.types.map((item, idx) => {

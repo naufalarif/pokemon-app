@@ -1,28 +1,26 @@
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 // Utils
-import { extractTypes } from '../utils/pokemonTypes';
-import { firstUpperCase, removeSymbol } from '../utils/textFormat';
-import { getHistoryGacha } from '../services/api';
+import { searchPokemonByName } from "../services/api";
+import { imageConvert } from "../utils/imageUtils";
+import { extractTypes } from "../utils/pokemonTypes";
+import { firstUpperCase, removeSymbol } from "../utils/textFormat";
 
 // Components
-import CardSkeleton from './CardSkeleton';
-import { imageConvert } from '../utils/imageUtils';
+import Loading from "./Loading";
 
-export default function CardMyPokemon({ payload }) {
-  const router = useRouter();
-  const { data, isLoading, isError } = getHistoryGacha(payload.data)
+export default function SearchPokemon({ name }) {
+  const { data, isLoading, isError } = searchPokemonByName(name);
 
-  if (isLoading) return <CardSkeleton />
-  if (isError) return <div><span>Something Wrong...</span></div>
-
-  const myLoader = ({ src, width, quality }) => {
-    return `${src}?w=${width}&q=${quality || 75}`
-  }
+  if (isLoading) return <Loading />
+  if (isError) return <span>{`Oops.. ${firstUpperCase(name)} not found`}</span>
 
   const handleNavigation = () => {
     router.push({ pathname: `/pokemon/${data.name}` });
+  }
+
+  const myLoader = ({ src, width, quality }) => {
+    return `${src}?w=${width}&q=${quality || 75}`
   }
 
   // Check Image
@@ -37,10 +35,10 @@ export default function CardMyPokemon({ payload }) {
       </div>
   });
 
-  const name = firstUpperCase(removeSymbol(data.name));
+  const capitalName = firstUpperCase(removeSymbol(data.name));
 
   return (
-    <div className="flex md:grid md:grid-cols-2 gap-4
+    <div className="flex grid grid-cols-2 gap-4
       bg-gray-100 rounded-xl p-4 mx-2 mb-4 cursor-pointer hover:shadow-2xl" 
       onClick={handleNavigation}
     >
@@ -54,9 +52,9 @@ export default function CardMyPokemon({ payload }) {
         />
       </div>
       <div>
-        <h4 className="font-extrabold text-xl mb-3">{name} - #{data.order}</h4>
+        <h4 className="font-extrabold text-xl mb-3">{capitalName} - #{data.order}</h4>
         <div className="flex flex-wrap mb-3">{types}</div>
-        {/* <div>
+        <div>
           <div className="flex items-center mb-2">
             <span className="font-bold text-gray-500 mr-2 w-16">HP</span> 
             <div className="bg-green-500 text-gray-100 py-1 px-3 rounded-xl" style={{ width: `${data.stats[0].base_stat}px` }}>
@@ -75,7 +73,7 @@ export default function CardMyPokemon({ payload }) {
               <span className="font-extrabold">{data.stats[2].base_stat}</span>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   )
