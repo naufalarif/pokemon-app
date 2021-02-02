@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CardHistory from "../../components/CardHistory";
+import EmptyState from "../../components/EmptyState";
 import Layout from "../../components/Layout";
-import { dateUtils } from "../../utils/textFormat";
 
 export default function History() {
   const [data, setData] = useState([]);
@@ -10,7 +10,9 @@ export default function History() {
   useEffect(() => {
     const getHistory = () => {
       const data = JSON.parse(localStorage.getItem('history'));
-      setData(data);
+      if (data) {
+        setData(data);
+      }
     };
 
     getHistory();
@@ -20,13 +22,14 @@ export default function History() {
     setSort(status);
   };
 
-  const filterData = sort === null ? data 
-    : sort ? data.filter(item => item.status === true) 
-    : data.filter(item => item.status === false); 
+  const filterBySuccess = !data || data.length > 0 ? data.filter(item => item.status === true) : <EmptyState />;
+  const filterByFailure = !data || data.length > 0 ? data.filter(item => item.status === false) : <EmptyState />;
+  const displayFilter = sort ? filterBySuccess : filterByFailure;
+  const displayData = sort === null ? data : displayFilter;
 
-  const history = !data || filterData.length <= 0 
-    ? <span>Empty</span> 
-    : filterData.map((item, idx) => 
+  const displayHistory = !data || data.length <= 0 
+    ? <EmptyState />
+    : displayData.map((item, idx) => 
         <CardHistory key={idx} payload={item} />
       );
   const filterSuccess = sort ? 'bg-blue-500 text-gray-100' : 'bg-gray-100 text-blue-500';
@@ -70,7 +73,7 @@ export default function History() {
           </button>
         </div>
         <div className="md:w-2/6 lg:w-5/12 mb-7 pt-7">
-          {history}
+          {displayHistory}
         </div>
       </div>
     </Layout>

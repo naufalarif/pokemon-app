@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CardMyPokemon from "../../components/CardMyPokemon";
+import EmptyState from "../../components/EmptyState";
 import Layout from "../../components/Layout";
 
 export default function MyPokemon() {
@@ -14,7 +15,9 @@ export default function MyPokemon() {
     getHistory();
   }, []);
 
-  const myPokemonList = !data || data.length <= 0 ? <span>Empty</span> : data.map((item, idx) => <CardMyPokemon key={idx} payload={item} />);
+  const myPokemonList = !data || data.length <= 0 
+  ? <EmptyState mine /> 
+  : data.map((item, idx) => <CardMyPokemon key={idx} payload={item} />);
 
   return (
     <Layout active="mypokemon">
