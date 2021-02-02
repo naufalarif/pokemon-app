@@ -48,7 +48,7 @@ export default function CardPokemon({ url }) {
         alt='Pokemon'
         width={500}
         height={500}
-        layout={`responsive`}
+        // layout={`responsive`}
       />
       <div className="text-center">
         <h4 className="font-extrabold text-xl">{capitalName} - #{data.order}</h4>

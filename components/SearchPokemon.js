@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 // Utils
 import { searchPokemonByName } from "../services/api";
@@ -11,6 +12,7 @@ import Loading from "./Loading";
 
 export default function SearchPokemon({ name }) {
   const { data, isLoading, isError } = searchPokemonByName(name);
+  const router = useRouter();
 
   if (isLoading) return <Loading />
   if (isError) return <span>{`Oops.. ${firstUpperCase(name)} not found`}</span>
