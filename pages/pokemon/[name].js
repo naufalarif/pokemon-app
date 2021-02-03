@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import { getPokemonByName, getAllPokemon } from '../../services/api';
 
+// Lib
+import { Radar } from 'react-chartjs-2';
+
 // Components
 import Layout from '../../components/Layout';
 import DetailAbility from '../../components/DetailAbility';
@@ -8,7 +11,6 @@ import DetailTypes from '../../components/DetailTypes';
 
 // Utils
 import { extractNumber, firstUpperCase, removeSymbol } from '../../utils/textFormat';
-import { extractStats } from '../../utils/pokemonTypes';
 import { imageConvert } from '../../utils/imageUtils';
 
 export default function Pokemon({ data }) {
@@ -21,16 +23,8 @@ export default function Pokemon({ data }) {
 
   const types = data.types.map((item, idx) => {
     const divider = idx + 1 === data.types.length ? '' : '/';
-    return <span key={idx} className="text-2xl font-bold text-gray-400 mr-2">{`${firstUpperCase(item.type.name)} ${divider}`}</span>})
-  
-    const stats = data.stats.map((item, idx) => 
-    <div key={idx} className="flex items-center mb-2">
-      <span className="font-bold text-gray-500 mr-2 w-32">{firstUpperCase(removeSymbol(item.stat.name))}</span>
-      <div className={`bg-${extractStats(item.stat.name)}-500 text-gray-100 py-1 px-3 rounded-xl`} 
-        style={{ width: `${item.base_stat}px` }}>
-        <span className="font-extrabold">{item.base_stat}</span>
-      </div>
-    </div>)
+    return <span key={idx} className="text-2xl font-bold text-gray-400 mr-2">
+      {`${firstUpperCase(item.type.name)} ${divider}`}</span>})
 
   const imgArtwork = imageConvert(data.sprites.other['official-artwork'].front_default);
   const imgDwFrontDef = imageConvert(data.sprites.other.dream_world.front_default);
@@ -39,10 +33,53 @@ export default function Pokemon({ data }) {
   const imgFrontShiny = imageConvert(data.sprites.front_shiny);
   const imgBackShiny = imageConvert(data.sprites.back_shiny);
 
+  const baseStat = data.stats.map(item => item.base_stat);
+  const dataset = {
+    labels: ['HP', 'ATK', 'DEF', 'SP ATK', 'SP DEF', 'SPD'],
+    datasets: [{
+      label: firstUpperCase(removeSymbol(data.name)),
+      data: baseStat,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 4
+    }]
+  }
+
+  const options = {
+    maintainAspectRatio: false,
+    scale: {
+      angleLines: {
+        display: false
+      },
+      ticks: {
+        beginAtZero: true,
+        suggestedMax: 140,
+      },
+      pointLabels: {
+        fontSize: 16,
+        fontStyle: 'bold'
+      },
+    }
+  };
+
   return (
     <Layout active="pokedex">
       <main className="py-4 px-7 bg-gray-200">
-        <div className="flex flex-wrap flex-row justify-between items-end">
+        <div id="header" className="flex flex-wrap flex-row justify-between items-end">
           <div className="py-9">
             <h4 className="text-2xl font-bold text-gray-400">{extractNumber(data.order)}</h4>
             <h2 className="text-5xl font-extrabold mb-2 capitalize">{removeSymbol(data.name)}</h2>
@@ -58,12 +95,11 @@ export default function Pokemon({ data }) {
           </div>
         </div>
         
-        <div className="flex grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-7 pb-7 mb-1">
+        <div id="content" className="flex grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-7 pb-7 mb-1">
           {/* Left */}
           <div id="left">
            {detailTypes}
           </div>
-          {/* Left */}
 
           {/* Right */}
           <div id="right">
@@ -80,7 +116,8 @@ export default function Pokemon({ data }) {
               <div className="text-center py-2 mb-2 border-b-2">
                 <span className="text-gray-500 font-bold text-2xl">Stats</span>
               </div>
-              {stats}
+              {/* {stats} */}
+              <Radar className="chart-container" type="chart" data={dataset} options={options} />
             </div>
 
             {/* Image */}
