@@ -8,7 +8,7 @@ export default function DetailTypes({ url }) {
   if (isLoading) return <span>Loading</span>
   if (isError) return <span>Something wrong...</span>
 
-  const typesName = firstUpperCase(removeSymbol(dataTypes.name));
+  const typesName = firstUpperCase(dataTypes.name);
   const typeCheck = extractTypes(dataTypes.name);
   const doubleDamageFrom = 
     dataTypes.damage_relations.double_damage_from.length > 0 

@@ -45,7 +45,7 @@ export default function Pokemon({ data }) {
         <div className="flex flex-wrap flex-row justify-between items-end">
           <div className="py-9">
             <h4 className="text-2xl font-bold text-gray-400">{extractNumber(data.order)}</h4>
-            <h2 className="text-5xl font-extrabold mb-2">{firstUpperCase(data.name)}</h2>
+            <h2 className="text-5xl font-extrabold mb-2 capitalize">{removeSymbol(data.name)}</h2>
             <div>{types}</div>
           </div>
           <div>

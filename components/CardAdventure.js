@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 // Utils
 import { getPokemonById } from "../services/api";
-import { firstUpperCase, removeSymbol } from '../utils/textFormat';
+import { removeSymbol } from '../utils/textFormat';
 
 // Component
 import LoadingPokeball from './LoadingPokeball';
@@ -199,10 +199,12 @@ export default function CardAdventure({ id }) {
       </button>
     : null;
 
+  const name = removeSymbol(data.name);
+
   return ( 
     <div className="flex flex-col justify-center">
       <div className="-mt-8">
-        <h4 className="text-3xl font-extrabold text-center text-white">{firstUpperCase(removeSymbol(data.name))}</h4>
+        <h4 className="text-3xl font-extrabold text-center text-white capitalize">{name}</h4>
         <Image 
           loader={myLoader} 
           src={`${img}`} 

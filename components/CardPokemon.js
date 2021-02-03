@@ -38,7 +38,6 @@ export default function CardPokemon({ url }) {
   });
 
   const name = removeSymbol(data.name);
-  const capitalName = firstUpperCase(name);
 
   return (
     <div className="bg-gray-100 rounded-xl p-4 mx-2 mb-4 cursor-pointer hover:shadow-2xl" onClick={handleNavigation}>
@@ -48,10 +47,9 @@ export default function CardPokemon({ url }) {
         alt='Pokemon'
         width={500}
         height={500}
-        // layout={`responsive`}
       />
       <div className="text-center">
-        <h4 className="font-extrabold text-xl">{capitalName} - #{data.order}</h4>
+        <h4 className="font-extrabold text-xl capitalize">{name} - #{data.order}</h4>
         <div className="flex flex-wrap justify-center items-center my-3">{types}</div>
       </div>
     </div>

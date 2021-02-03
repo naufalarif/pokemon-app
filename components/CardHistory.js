@@ -26,12 +26,11 @@ export default function CardHistory({ payload }) {
   const types = data.types.map((item, idx) => {
     const typeCheck = extractTypes(item.type.name);
     return <div key={idx} className={`mx-1 mb-1 ${typeCheck} px-3 py-1 rounded-xl font-bold`}>
-        <span>{firstUpperCase(item.type.name)}</span>
+        <span className="capitalize">{item.type.name}</span>
       </div>
   });
 
   const name = removeSymbol(data.name);
-  const capitalName = firstUpperCase(name);
   const status = payload.status 
     ? <div className="-mt-10 lg:mt-0"><span className="font-extrabold text-xl text-green-500">Success</span></div>
     : <div className="-mt-10 lg:mt-0"><span className="font-extrabold text-xl text-red-600">Failed</span></div>
@@ -55,7 +54,7 @@ export default function CardHistory({ payload }) {
         />
       </div>
       <div className="text-center">
-        <h4 className="font-extrabold text-xl">{capitalName} - #{data.order}</h4>
+        <h4 className="font-extrabold text-xl capitalize">{name} - #{data.order}</h4>
         <div className="flex flex-wrap justify-center my-3">{types}</div>
       </div>
       <div className="text-center mb-3">

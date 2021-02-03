@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { searchPokemonByName } from "../services/api";
 import { imageConvert } from "../utils/imageUtils";
 import { extractTypes } from "../utils/pokemonTypes";
-import { firstUpperCase, removeSymbol } from "../utils/textFormat";
+import { removeSymbol } from "../utils/textFormat";
 
 // Components
 import Loading from "./Loading";
@@ -15,7 +15,7 @@ export default function SearchPokemon({ name }) {
   const router = useRouter();
 
   if (isLoading) return <Loading />
-  if (isError) return <span>{`Oops.. ${firstUpperCase(name)} not found`}</span>
+  if (isError) return <span className="capitalize">{`Oops.. ${name} not found`}</span>
 
   const handleNavigation = () => {
     router.push({ pathname: `/pokemon/${data.name}` });
@@ -37,7 +37,7 @@ export default function SearchPokemon({ name }) {
       </div>
   });
 
-  const capitalName = firstUpperCase(removeSymbol(data.name));
+  const nameame = removeSymbol(data.name);
 
   return (
     <div className="flex grid grid-cols-2 gap-4
@@ -54,7 +54,7 @@ export default function SearchPokemon({ name }) {
         />
       </div>
       <div>
-        <h4 className="font-extrabold text-xl mb-3">{capitalName} - #{data.order}</h4>
+        <h4 className="font-extrabold text-xl capitalize mb-3">{nameame} - #{data.order}</h4>
         <div className="flex flex-wrap mb-3">{types}</div>
         <div>
           <div className="flex items-center mb-2">

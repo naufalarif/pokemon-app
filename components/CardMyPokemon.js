@@ -37,7 +37,7 @@ export default function CardMyPokemon({ payload }) {
       </div>
   });
 
-  const name = firstUpperCase(removeSymbol(data.name));
+  const name = removeSymbol(data.name);
 
   return (
     <div className="flex md:grid md:grid-cols-2 gap-4
@@ -54,7 +54,7 @@ export default function CardMyPokemon({ payload }) {
         />
       </div>
       <div>
-        <h4 className="font-extrabold text-xl mb-3">{name} - #{data.order}</h4>
+        <h4 className="font-extrabold text-xl capitalize mb-3">{name} - #{data.order}</h4>
         <div className="flex flex-wrap mb-3">{types}</div>
         {/* <div>
           <div className="flex items-center mb-2">

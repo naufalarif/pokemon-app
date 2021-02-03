@@ -28,7 +28,7 @@ export default function Pokedex({ data }) {
 
   // Ability Category 
   const displayTypes = data.results.map((item, idx) => {   
-    const typesCapital = firstUpperCase(removeSymbol(item.name));
+    const typesCapital = firstUpperCase(item.name);
     const active = typeUrl === item.url ? 'bg-blue-500 text-gray-100' : 'bg-gray-100 text-blue-500';
     return <div key={idx}
         className={`
