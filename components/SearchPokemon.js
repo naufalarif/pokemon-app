@@ -10,12 +10,20 @@ import { removeSymbol } from "../utils/textFormat";
 // Components
 import Loading from "./Loading";
 
+const NotFound = ({ name }) => {
+  return (
+    <div className="p-4 mb-7">
+      <span className="capitalize">{`Oops.. ${name} not found`}</span>
+    </div>
+  )
+}
+
 export default function SearchPokemon({ name }) {
   const { data, isLoading, isError } = searchPokemonByName(name);
   const router = useRouter();
 
   if (isLoading) return <Loading />
-  if (isError) return <span className="capitalize">{`Oops.. ${name} not found`}</span>
+  if (isError) return <NotFound name={name} />
 
   const handleNavigation = () => {
     router.push({ pathname: `/pokemon/${data.name}` });
