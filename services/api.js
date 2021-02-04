@@ -70,9 +70,26 @@ export async function getPokemonByName(name) {
   return data;
 }
 
-export function getEvolutionPokemon(id) {
-  const { data, error } = useSWR(`${config.apiURL}/evolution-chain/${id}/`, fetcher);
+export function getSpeciesPokemon(url) {
+  const { data, error } = useSWR(`${url}`, fetcher);
+  return {
+    dataSpecies: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
 
+export function getEvolutionList(url) {
+  const { data, error } = useSWR(`${url}`, fetcher);
+  return {
+    dataEvolve: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+
+export function getEvolutionPokemon(name) {
+  const { data, error } = useSWR(`${config.apiURL}/pokemon/${name}`, fetcher);
   return {
     data: data,
     isLoading: !error && !data,

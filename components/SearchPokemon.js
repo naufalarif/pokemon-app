@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { searchPokemonByName } from "../services/api";
 import { imageConvert } from "../utils/imageUtils";
 import { extractTypes } from "../utils/pokemonTypes";
-import { removeSymbol } from "../utils/textFormat";
+import { firstUpperCase, removeSymbol } from "../utils/textFormat";
 
 // Components
 import Loading from "./Loading";
