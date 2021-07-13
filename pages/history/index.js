@@ -35,7 +35,7 @@ export default function History() {
 
   return (
     <Layout active="history">
-      <div className={`${styles.history} flex flex-col items-center`}>
+      <div className={`flex flex-col items-center`}>
         <h1 className="py-7 text-3xl font-extrabold text-gray-700">Gacha History</h1>
         <div className="flex flex-wrap items-center mb-1 pb-6 px-4">
           <div>
