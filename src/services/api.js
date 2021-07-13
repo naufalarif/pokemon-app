@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import config from '../config';
+import config from 'config';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 

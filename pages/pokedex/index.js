@@ -9,6 +9,7 @@ import {
 } from 'components';
 
 // Utils
+import config from 'config';
 import { firstUpperCase } from 'utils';
 
 import { Input, Space } from 'antd';
@@ -43,7 +44,7 @@ export default function Pokedex({ data }) {
 
   // Show List
   const showList = 
-    !typeUrl && !pokemonName ? <PaginationPokemon url="https://pokeapi.co/api/v2" /> 
+    !typeUrl && !pokemonName ? <PaginationPokemon url={config.apiURL} /> 
     : !pokemonName ? <ListPokemonByTypes url={typeUrl} />
     : <SearchPokemon name={pokemonName} />
 
