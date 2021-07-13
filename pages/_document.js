@@ -12,7 +12,6 @@ class MyDocument extends Document {
         <Head>
           <meta charset='utf-8' />
           <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
-          <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
           <meta name='description' content='Pokemon App is a mini game to catch pokemon' />
           <meta name='keywords' content='pokemon' />
           <title>Pokemon App</title>
