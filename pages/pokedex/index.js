@@ -9,7 +9,7 @@ import {
 } from 'components';
 
 // Utils
-import config from 'config';
+import config from '../../src/config';
 import { firstUpperCase } from 'utils';
 
 import { Input, Space } from 'antd';
