@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import styles from '../../styles/Adventure.module.css';
-import Layout from '../../components/Layout';
-import CardAdventure from '../../components/CardAdventure';
+import styles from './adventure.module.css';
+import { Layout, CardAdventure } from 'components';
 
 export default function Adventure() {  
   const [id, setId] = useState([]);

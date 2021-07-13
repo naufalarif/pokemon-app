@@ -1,18 +1,14 @@
 import Image from 'next/image';
-import { getPokemonByName, getAllPokemon } from '../../services/api';
+import { getPokemonByName, getAllPokemon } from 'services/api';
 
 // Lib
 import { Radar } from 'react-chartjs-2';
 
 // Components
-import Layout from '../../components/Layout';
-import DetailAbility from '../../components/DetailAbility';
-import DetailTypes from '../../components/DetailTypes';
-import CardSpecies from '../../components/CardSpecies';
+import { Layout, DetailAbility, DetailTypes, CardSpecies } from 'components';
 
 // Utils
-import { extractNumber, firstUpperCase, removeSymbol } from '../../utils/textFormat';
-import { imageConvert } from '../../utils/imageUtils';
+import { extractNumber, firstUpperCase, removeSymbol, imageConvert } from 'utils';
 
 export default function Pokemon({ data }) {
   const myLoader = ({ src, width, quality }) => {

@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import CardHistory from "../../components/CardHistory";
-import EmptyState from "../../components/EmptyState";
-import Layout from "../../components/Layout";
+import { CardHistory, Layout, EmptyState } from "components";
 
 export default function History() {
   const [data, setData] = useState([]);
@@ -37,7 +35,7 @@ export default function History() {
 
   return (
     <Layout active="history">
-      <div className="flex flex-col justify-center items-center">
+      <div className={`${styles.history} flex flex-col items-center`}>
         <h1 className="py-7 text-3xl font-extrabold text-gray-700">Gacha History</h1>
         <div className="flex flex-wrap items-center mb-1 pb-6 px-4">
           <div>

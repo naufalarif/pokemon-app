@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import CardMyPokemon from "../../components/CardMyPokemon";
-import EmptyState from "../../components/EmptyState";
-import Layout from "../../components/Layout";
+import { CardMyPokemon, EmptyState, Layout } from "components";
 
 export default function MyPokemon() {
   const [data, setData] = useState([]);

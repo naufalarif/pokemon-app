@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import styles from '../src/styles/Home.module.css';
 import { useRouter } from 'next/router';
-import Layout from '../components/Layout';
+import { Layout } from 'components';
 
 export default function Home() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function Home() {
     <Layout>
       <div className={styles.container}>
         <main className={styles.main}>
-          <content id="content" className={styles.content}>
+          <div id="content" className={styles.content}>
             <div className="mb-8">
               <h1 className="font-extrabold text-5xl mb-4">
                 Gotta Catch 'Em All!
@@ -36,12 +36,13 @@ export default function Home() {
                 Catch Your Pokémon Now
               </button>
             </div>
-          </content>
+          </div>
 
           <div id="banner" className={`${styles.banner} justify-center align-center flex`}>
             <Image 
               src="/imgs/charizard.png"
               alt="logo pokemon"
+              // layout="responsive"
               width={600}
               height={600}
             />

@@ -1,16 +1,18 @@
 import { useState } from 'react';
 
 // Components
-import Layout from '../../components/Layout';
-import PaginationPokemon from '../../components/PaginationPokemon';
-import ListPokemonByTypes from '../../components/ListPokemonByTypes';
+import { 
+  Layout, 
+  PaginationPokemon, 
+  ListPokemonByTypes, 
+  SearchPokemon 
+} from 'components';
 
 // Utils
-import config from '../../config';
-import { firstUpperCase, removeSymbol } from '../../utils/textFormat';
+import config from 'config';
+import { firstUpperCase } from 'utils';
 
 import { Input, Space } from 'antd';
-import SearchPokemon from '../../components/SearchPokemon';
 
 const { Search } = Input;
 
