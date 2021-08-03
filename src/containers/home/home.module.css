@@ -1,5 +1,5 @@
 .container {
-  background-image: url('../../public/imgs/bg-blue-white.png');
+  background-image: url('../../../public/imgs/bg-blue-white.png');
   background-size: cover;
   height: calc(100% - 131px);
 }

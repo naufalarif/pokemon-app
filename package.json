@@ -12,8 +12,9 @@
     "antd": "^4.10.2",
     "apexcharts": "^3.23.1",
     "autoprefixer": "^10.2.1",
+    "axios": "^0.21.1",
     "chart.js": "^2.9.4",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "next": "10.0.5",
     "next-pwa": "^5.0.5",
     "postcss": "^8.2.4",
@@ -21,10 +22,22 @@
     "react-chartjs-2": "^2.11.1",
     "react-content-loader": "^6.0.0",
     "react-dom": "17.0.1",
+    "react-query": "^3.19.1",
     "react-responsive-carousel": "^3.2.11",
     "react-slick": "^0.27.14",
-    "recoil": "^0.1.2",
+    "react-waypoint": "^10.1.0",
     "swr": "^0.4.0",
     "tailwindcss": "^2.0.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "prettier": "^2.3.2"
   }
 }

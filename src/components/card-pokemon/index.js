@@ -1,3 +1,1 @@
-import CardPokemon from "./CardPokemon";
-
-export default CardPokemon;
+export { default } from "./card-pokemon.component";

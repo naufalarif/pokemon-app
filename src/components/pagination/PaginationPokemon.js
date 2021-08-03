@@ -1,57 +1,57 @@
-import { useState } from 'react';
-
-// Config
-import { getPokemonList } from '../../services/api';
-import config from 'config';
+// Library
+import isEmpty from "lodash/isEmpty";
 
 // Components
-import { Loading, CardPokemon } from 'components';
+import { Loading } from 'components';
+import { CardPokemonContainer } from 'containers';
+import { Waypoint } from "react-waypoint";
 
-export default function PaginationPokemon() {
-  const [recentPage, setRecentPage] = useState(1);
-  const [page, setPage] = useState(`${config.apiURL}/pokemon?limit=20&offset=0`);
+export default function PaginationPokemon(props) {
+  const { payload, limit, setLimit, total, isLoading } = props;
+  // let displayPokemon;
+  // if (!isEmpty(payload)) {
+  //   displayPokemon = <div
+  //       className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pb-7 mb-7"
+  //     >
+  //       {payload.map((item) => <CardPokemonContainer payload={item} />)}
+  //       {renderWayPoint}
+  //     </div>;
+  // } else {
+  //   displayPokemon = <Loading />;
+  // }
 
-  const { data, isLoading, isError } = getPokemonList(page);
-
-  if (isLoading) return <Loading />
-  if (isError) return <div><span>Something wrong...</span></div>
-
-  const handleNextPagination = () => {
-    setPage(data.next);
-    setRecentPage(prevState => prevState + 1);
-    window.scrollTo(0, 0);
+  const handleLoadMore = () => {
+    // if (limit < totalPokemon) {
+      setLimit((prevState) => prevState + 5);
+    // }
   };
 
-  const handlePrevPagination = () => {
-    setPage(data.previous);
-    setRecentPage(prevState => prevState - 1);
-    window.scrollTo(0, 0);
+  const _renderWayPoint = () => {
+    if (!isLoading) {
+      return <Waypoint onEnter={handleLoadMore} />;
+    }
   };
 
-  const totalPage = Math.floor(data.count / 20) + 1;
-  const showNextBtn = data.next ? <button onClick={handleNextPagination} className="mx-3 focus:outline-none">Next</button> : null;
-  const showPrevBtn = data.previous ? <button onClick={handlePrevPagination} className="mx-3 focus:outline-none">Prev</button> : null;
-  const displayPokemon = data.results.map((item, idx) => <CardPokemon key={idx} url={item.url} />);
-
-  return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pb-7 mb-7">
-        {displayPokemon}
-        <div>
-          <div>
-            <span>show {data.results.length}</span>
-            <br/>
-            <span>{data.count} total pokémon</span>
+  const _renderItem = () => {
+    if (!isEmpty(payload)) {
+      return (
+        <>
+          <div
+            className="grid grid-cols-1 sm:grid-cols-3
+              md:grid-cols-4 lg:grid-cols-5 gap-4 pb-7 mb-7"
+          >
+            {payload.map((item) => <CardPokemonContainer payload={item} />)}
           </div>
-        </div>
-      </div>
-      <div className="mb-7">
-        <div className="text-center">
-          {showPrevBtn}
-          <span>{recentPage} - {totalPage}</span>
-          {showNextBtn}
-        </div>
-      </div>
-    </>
-  )
+          <div>
+            {_renderWayPoint()}
+            <Loading />
+          </div>
+        </>
+      );
+    }
+
+    return <Loading />;
+  };
+
+  return _renderItem();
 }

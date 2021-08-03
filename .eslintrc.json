@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "airbnb",
+    // "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "rules": {
+    "import/no-unresolved": ["off"],
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "import/prefer-default-export": 0,
+    "react/react-in-jsx-scope": ["off"],
+    "jsx-a11y/href-no-hash": ["off"],
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "max-len": [
+      "error",
+      {
+        "code": 100
+      }
+    ],
+    "no-param-reassign": "off",
+    "no-unused-vars": "off",
+    "no-plusplus": "off",
+    "arrow-body-style": ["error", "as-needed"],
+    "arrow-parens": ["error", "always"],
+    "react/jsx-props-no-spreading": "off",
+    "implicit-arrow-linebreak": ["error", "beside"],
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+    "linebreak-style": 0,
+    "object-curly-spacing": ["error", "always"],
+    "array-bracket-spacing": ["error", "always"],
+    "no-underscore-dangle": 0,
+    "comma-dangle": ["error", "always-multiline"],
+    "react/prop-types": 0,
+    "semi": ["error", "always"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "react/destructuring-assignment": "off"
+  }
+}

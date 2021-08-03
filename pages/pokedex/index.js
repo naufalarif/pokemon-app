@@ -1,98 +1,79 @@
 import { useState } from 'react';
 
+// Library
+import isEmpty from 'lodash/isEmpty';
+import { useQuery, useInfiniteQuery } from 'react-query';
+
 // Components
-import { 
-  Layout, 
-  PaginationPokemon, 
-  ListPokemonByTypes, 
-  SearchPokemon 
+import {
+  Layout,
+  PaginationPokemon,
+  Categories,
+  InputSearch,
 } from 'components';
+import { ListSearch, ListByCategories } from 'containers';
 
 // Utils
-import config from 'config';
-import { firstUpperCase } from 'utils';
+import { getAllPokemon, getTypePokemon } from 'services/api';
 
-import { Input, Space } from 'antd';
+// Server Side Rendering
+export async function getServerSideProps() {
+  const resType = await getTypePokemon(20);
+  const dataType = await resType.data;
 
-const { Search } = Input;
+  const resPokemon = await getAllPokemon(20);
+  const dataPokemon = await resPokemon.data;
 
-export default function Pokedex({ data }) {
-  const [typeUrl, setTypeUrl] = useState('');
-  const [pokemonName, setPokemonName] = useState('');
+  return { props: { dataType, dataPokemon } };
+}
 
-  const handleShowPokemonByType = (url) => {
-    setTypeUrl(url)
-  };
+export default function Pokedex(props) {
+  // State
+  const [ type, setType ] = useState('');
+  const [ limit, setLimit ] = useState(20);
+  const [ pokemonName, setPokemonName ] = useState('');
 
-  const onSearch = (value) => {
-    setPokemonName(value.toLowerCase());
+  // React Query
+  const { data: dataType } =
+    useQuery('types', () => getTypePokemon(20), { initialData: props.dataType });
+  const { data: dataPokemon, isError, isLoading } =
+    useInfiniteQuery('pokemon', () => getAllPokemon(limit), { initialData: props.dataPokemon });
+
+  // Payload
+  const payloadType = !isEmpty(dataType.data) ? dataType.data.results : [];
+  const payloadPokemon = !isEmpty(dataPokemon.pages) ? dataPokemon.pages[0].data.results : [];
+  const totalPokemon = !isEmpty(dataPokemon.pages) ? dataPokemon.pages[0].data.count : 0;
+
+  // Display Data
+  let displayData;
+  if (!type && !pokemonName) {
+    displayData =
+      <PaginationPokemon
+        payload={payloadPokemon}
+        limit={limit}
+        setLimit={setLimit}
+        total={totalPokemon}
+        isLoading={isLoading}
+      />;
+  } else if (!pokemonName) {
+    displayData = <ListByCategories type={type} />;
+  } else {
+    displayData = <ListSearch name={pokemonName} />;
   }
-
-  // Ability Category 
-  const displayTypes = data.results.map((item, idx) => {   
-    const typesCapital = firstUpperCase(item.name);
-    const active = typeUrl === item.url ? 'bg-blue-500 text-gray-100' : 'bg-gray-100 text-blue-500';
-    return <div key={idx}
-        className={`
-          ${active} px-5 py-2 mr-4 rounded-3xl font-bold 
-          hover:bg-blue-500 hover:text-gray-100
-          focus:outline-none cursor-pointer`}
-        onClick={() => handleShowPokemonByType(item.url)}>
-          <span>{typesCapital}</span>
-      </div>
-  });
-
-  // Show List
-  const showList = 
-    !typeUrl && !pokemonName ? <PaginationPokemon url={config.apiURL} /> 
-    : !pokemonName ? <ListPokemonByTypes url={typeUrl} />
-    : <SearchPokemon name={pokemonName} />
 
   return (
     <Layout active="pokedex">
-      <div>
-        <div id="search-bar" className="flex justify-center py-2 mt-4">
-          <Space direction="vertical">
-            <Search 
-              className="w-full"
-              placeholder="Search pokemon..." 
-              allowClear 
-              onSearch={onSearch}
-            />
-          </Space>
-        </div>
-
-        <div id="types" className="flex justify-center items-center p-4 pb-7 mb-1">
-          <div className="flex flex-nowrap overflow-auto w-10/12 md:w-4/5 lg:w-3/5 mr-4">
-            {displayTypes}
-          </div>
-          <div>
-            <button 
-              onClick={() => setTypeUrl('')}
-              className="
-                px-2 py-0.5 rounded-full
-                bg-red-400 text-gray-100
-                hover:bg-red-500 hover:text-gray-100
-                focus:outline-none cursor-pointer"
-            >
-              &#10005;
-            </button>
-          </div>
-        </div>
-
-        <div id="list-pokemon" className="flex flex-col justify-center items-center">
-          <div className="px-4">
-            {showList}
-          </div>
+      <InputSearch setPokemonName={setPokemonName} />
+      <Categories
+        payload={payloadType}
+        setType={setType}
+        type={type}
+      />
+      <div id="list-pokemon" className="flex flex-col justify-center items-center">
+        <div className="px-4">
+          {displayData}
         </div>
       </div>
     </Layout>
-  )
-}
-
-export async function getStaticProps() {
-  const res = await fetch('https://pokeapi.co/api/v2/type?limit=20&offset=0');
-  const data = await res.json();
-
-  return { props: { data }, revalidate: 1 }
+  );
 }
