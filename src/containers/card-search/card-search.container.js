@@ -1,5 +1,4 @@
 // Library
-import isEmpty from "lodash/isEmpty";
 import { useQuery } from 'react-query';
 
 // Components
@@ -14,10 +13,8 @@ const CardSearchContainer = ({ payload }) => {
 
   if (isLoading) return <CardSkeleton />;
   if (isError) return <div><span>Something Wrong...</span></div>;
-  
-  const payloadPokemon = !isEmpty(data.data) ? data.data : {};
 
-  return <CardSearch payload={payloadPokemon} />;
+  return <CardSearch payload={data} />;
 };
 
 export default CardSearchContainer;

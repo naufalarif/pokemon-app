@@ -1,8 +1,10 @@
+import isEmpty from "lodash/isEmpty";
+
 import { CardType } from "components";
 
 const Categories = (props) => {
   const { payload, type, setType } = props;
-  const displayType =
+  const displayType = !isEmpty(payload) &&
     payload.map((item) => <CardType type={type} setType={setType} payload={item} />);
 
   const handleClearType = () => {

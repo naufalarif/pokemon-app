@@ -14,10 +14,8 @@ const CardPokemonContainer = ({ payload }) => {
 
   if (isLoading) return <CardSkeleton />;
   if (isError) return <div><span>Something Wrong...</span></div>;
-  
-  const payloadPokemon = !isEmpty(data.data) ? data.data : {};
 
-  return <CardPokemon payload={payloadPokemon} />;
+  return <CardPokemon payload={data} />;
 };
 
 export default CardPokemonContainer;

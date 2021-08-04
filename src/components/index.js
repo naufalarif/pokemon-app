@@ -1,23 +1,34 @@
 import Layout from "./layout";
-import CardAdventure from "./card-adventure";
-import CardHistory from "./card-history";
 import EmptyState from "./empty-state";
-import ListPokemonByTypes from "./list-pokemon-by-types";
 import Categories from "./categories";
 import PaginationPokemon from "./pagination";
+
+// List
 import ListSearch from "../containers/list-search";
-import CardEvolution from "./card-evolution";
+import ListAbility from "./list-ability";
+import ListTypes from "./list-types";
+
+// Card
+import CardAdventure from "./card-adventure";
+import CardHistory from "./card-history";
 import CardMyPokemon from "./card-mypokemon";
 import CardPokemon from "./card-pokemon";
 import CardSkeleton from "./card-skeleton";
-import CardSpecies from "./card-species";
+import CardEvolution from "./card-evolution";
+import CardType from "./card-type";
+import CardSearch from "./card-search";
+
+// Detail
 import DetailAbility from "./detail-ability";
 import DetailTypes from "./detail-types";
+import DetailForm from "./detail-form";
+import DetailAppereance from "./detail-appereance";
+
 import Loading from "./loading";
-import CardType from "./card-type";
 import InputSearch from "./input-search";
-import CardSearch from "./card-search";
 import SearchNotFound from "./search-not-found";
+import ImageLoader from "./image-loader";
+import Stats from "./stats";
 
 export {
   Layout,
@@ -27,17 +38,21 @@ export {
   CardMyPokemon,
   CardPokemon,
   CardSkeleton,
-  CardSpecies,
   CardType,
   CardSearch,
   DetailAbility,
   DetailTypes,
+  DetailForm,
+  DetailAppereance,
   EmptyState,
-  ListPokemonByTypes,
   Categories,
   PaginationPokemon,
   InputSearch,
   Loading,
   ListSearch,
+  ListAbility,
+  ListTypes,
   SearchNotFound,
+  ImageLoader,
+  Stats,
 };

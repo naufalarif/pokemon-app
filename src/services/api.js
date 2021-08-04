@@ -13,7 +13,7 @@ const Api = axios.create({
 export const getTypePokemon = async (limit) => {
   try {
     const response = await Api.get(`/type?limit=${limit}&offset=0`);
-    return response;
+    return response.data;
   } catch (error) {
     return error;
   }
@@ -22,7 +22,7 @@ export const getTypePokemon = async (limit) => {
 export const getAllPokemon = async (limit) => {
   try {
     const response = await Api.get(`/pokemon?limit=${limit}&offset=0`);
-    return response;
+    return response.data;
   } catch (error) {
     return error;
   }
@@ -31,7 +31,7 @@ export const getAllPokemon = async (limit) => {
 export const getDetailPokemon = async (name) => {
   try {
     const response = await Api.get(`/pokemon/${name}`);
-    return response;
+    return response.data;
   } catch (error) {
     return error;
   }
@@ -40,7 +40,7 @@ export const getDetailPokemon = async (name) => {
 export const getSearchPokemon = async (name) => {
   try {
     const response = await Api.get(`/pokemon/${name}`);
-    return response;
+    return response.data;
   } catch (error) {
     return error;
   }
@@ -49,12 +49,38 @@ export const getSearchPokemon = async (name) => {
 export const getPokemonByCategories = async (type) => {
   try {
     const response = await Api.get(`/type/${type}`);
-    return response;
+    return response.data;
   } catch (error) {
     return error;
   }
 };
 
+export const getDetailAbility = async (ability) => {
+  try {
+    const response = await Api.get(`/ability/${ability}`);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getSpeciesAPI = async (name) => {
+  try {
+    const response = await Api.get(`/pokemon-species/${name}`);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getEvolutionAPI = async (url) => {
+  try {
+    const response = await axios.get(`${url}`);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
 
 // REFACTOR
 
@@ -63,16 +89,6 @@ export function getAbilityCategory(url) {
 
   return {
     data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
-
-export function getDetailAbility(url) {
-  const { data, error } = useSWR(`${url}`, fetcher);
-
-  return {
-    dataAbility: data,
     isLoading: !error && !data,
     isError: error,
   };
@@ -97,27 +113,6 @@ export function getPokemonList(url) {
     isError: error,
   };
 }
-
-// export function getDetailPokemon(name) {
-//   eslint-disable-next-line no-nested-ternary
-//   const urlCheck = url ? url.includes('https') ? url : `${config.apiURL}/pokemon/${url}` : null;
-//   const { data, error } = useSWR(`${config.apiURL}/pokemon/${name}`, fetcher);
-
-//   return {
-//     data,
-//     isLoading: !error && !data,
-//     isError: error,
-//   };
-// }
-
-// export async function getAllPokemon() {
-//   const res = await fetch(`${config.apiURL}/pokemon?limit=1118&offset=0`);
-//   const data = await res.json();
-
-//   return data.results.map((pokemon) => ({
-//     params: { name: pokemon.name },
-//   }));
-// }
 
 export async function getPokemonByName(name) {
   const res = await fetch(`${config.apiURL}/pokemon/${name}`);

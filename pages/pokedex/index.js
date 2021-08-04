@@ -19,10 +19,10 @@ import { getAllPokemon, getTypePokemon } from 'services/api';
 // Server Side Rendering
 export async function getServerSideProps() {
   const resType = await getTypePokemon(20);
-  const dataType = await resType.data;
+  const dataType = await resType;
 
   const resPokemon = await getAllPokemon(20);
-  const dataPokemon = await resPokemon.data;
+  const dataPokemon = await resPokemon;
 
   return { props: { dataType, dataPokemon } };
 }
@@ -40,9 +40,9 @@ export default function Pokedex(props) {
     useInfiniteQuery('pokemon', () => getAllPokemon(limit), { initialData: props.dataPokemon });
 
   // Payload
-  const payloadType = !isEmpty(dataType.data) ? dataType.data.results : [];
-  const payloadPokemon = !isEmpty(dataPokemon.pages) ? dataPokemon.pages[0].data.results : [];
-  const totalPokemon = !isEmpty(dataPokemon.pages) ? dataPokemon.pages[0].data.count : 0;
+  const payloadType = dataType.results;
+  const payloadPokemon = !isEmpty(dataPokemon.pages) ? dataPokemon.pages[0].results : [];
+  const totalPokemon = !isEmpty(dataPokemon.pages) ? dataPokemon.pages[0].count : 0;
 
   // Display Data
   let displayData;

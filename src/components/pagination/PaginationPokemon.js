@@ -8,18 +8,6 @@ import { Waypoint } from "react-waypoint";
 
 export default function PaginationPokemon(props) {
   const { payload, limit, setLimit, total, isLoading } = props;
-  // let displayPokemon;
-  // if (!isEmpty(payload)) {
-  //   displayPokemon = <div
-  //       className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pb-7 mb-7"
-  //     >
-  //       {payload.map((item) => <CardPokemonContainer payload={item} />)}
-  //       {renderWayPoint}
-  //     </div>;
-  // } else {
-  //   displayPokemon = <Loading />;
-  // }
-
   const handleLoadMore = () => {
     // if (limit < totalPokemon) {
       setLimit((prevState) => prevState + 5);

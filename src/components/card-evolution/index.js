@@ -1,3 +1,1 @@
-import CardEvolution from "./CardEvolution";
-
-export default CardEvolution;
+export { default } from "./card-evolution.component";

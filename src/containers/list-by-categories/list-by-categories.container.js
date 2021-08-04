@@ -12,19 +12,18 @@ import { getPokemonByCategories } from '../../services/api';
 const ListByCategories = ({ type }) => {
   const { data, isLoading, isError } = useQuery(`type/${type}`, () => getPokemonByCategories(type));
   
-  const payloadPokemon = !isEmpty(data) ? data.data.pokemon : [];
+  if (isLoading) return <Loading />;
+  if (isError) return <div><span>Something wrong...</span></div>;
   
   let displayData;
-  if (!isEmpty(payloadPokemon)) {
-    displayData = payloadPokemon.map((item) => <CardPokemonContainer payload={item.pokemon} />);
+  if (!isEmpty(data.pokemon)) {
+    displayData = data.pokemon.map((item) => <CardPokemonContainer payload={item.pokemon} />);
   } else {
     displayData = <div className="p-4 mb-7">
       <span className="text-center">Oops... There&apos;s no pokemon founded</span>
     </div>;
   }
 
-  if (isLoading) return <Loading />;
-  if (isError) return <div><span>Something wrong...</span></div>;
 
   return (
     <div
