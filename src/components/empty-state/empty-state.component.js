@@ -7,7 +7,7 @@ export default function EmptyState({ mine }) {
       flex flex-col justify-center items-center
       rounded-xl bg-gray-200 shadow-2xl p-4
     ">
-      <Image 
+      <Image
         src="/imgs/pikachu.png"
         width={400}
         height={400}
@@ -18,5 +18,5 @@ export default function EmptyState({ mine }) {
         <span className="text-gray-700">try to catch in adventure</span>
       </div>
     </div>
-  )
+  );
 }

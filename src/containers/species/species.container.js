@@ -1,7 +1,7 @@
 import { Evolution } from "containers";
 import isEmpty from "lodash/isEmpty";
 import { useQuery } from "react-query";
-import { getSpeciesAPI, getSpeciesPokemon } from "../../services/api";
+import { getSpeciesAPI } from "../../services/api";
 import LoadingPokeball from '../../components/loading-pokeball';
 
 const Species = ({ species }) => {

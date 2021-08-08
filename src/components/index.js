@@ -24,14 +24,23 @@ import DetailTypes from "./detail-types";
 import DetailForm from "./detail-form";
 import DetailAppereance from "./detail-appereance";
 
+// Loading
 import Loading from "./loading";
+import LoadingPokeball from "./loading-pokeball";
+
 import InputSearch from "./input-search";
 import SearchNotFound from "./search-not-found";
 import ImageLoader from "./image-loader";
 import Stats from "./stats";
 
+// Modal
+import ModalSuccess from "./modal-success";
+import ModalFailure from "./modal-failure";
+import ModalLoading from "./modal-loading";
+
 export {
   Layout,
+  
   CardAdventure,
   CardHistory,
   CardEvolution,
@@ -40,19 +49,29 @@ export {
   CardSkeleton,
   CardType,
   CardSearch,
+  
   DetailAbility,
   DetailTypes,
   DetailForm,
   DetailAppereance,
-  EmptyState,
-  Categories,
-  PaginationPokemon,
-  InputSearch,
+  
   Loading,
+  LoadingPokeball,
+  
   ListSearch,
   ListAbility,
   ListTypes,
-  SearchNotFound,
-  ImageLoader,
+  PaginationPokemon,
+  
   Stats,
+  Categories,
+  InputSearch,
+  ImageLoader,
+  
+  SearchNotFound,
+  EmptyState,
+
+  ModalSuccess,
+  ModalFailure,
+  ModalLoading,
 };

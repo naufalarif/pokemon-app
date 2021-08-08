@@ -7,10 +7,10 @@ import { Loading } from 'components';
 import { CardPokemonContainer } from 'containers';
 
 // Api
-import { getPokemonByCategories } from '../../services/api';
+import { getPokemonByTypeAPI } from '../../services/api';
 
 const ListByCategories = ({ type }) => {
-  const { data, isLoading, isError } = useQuery(`type/${type}`, () => getPokemonByCategories(type));
+  const { data, isLoading, isError } = useQuery(`type/${type}`, () => getPokemonByTypeAPI(type));
   
   if (isLoading) return <Loading />;
   if (isError) return <div><span>Something wrong...</span></div>;
