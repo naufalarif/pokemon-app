@@ -11,26 +11,26 @@ export default function FourOhFour() {
   return (
     <div className="flex flex-col justify-center items-center bg-gray-50 h-full">
       <div className="flex flex-initial flex-row justify-center items-center">
-        <Image 
+        <Image
           src="/icons/4.png"
           className="iconFour"
           alt="4"
-          width={'75%'}
-          height={'75%'}
+          width="75%"
+          height="75%"
         />
         <Image
           src="/icon.png"
           className="iconPokeball"
           alt="poke-ball"
-          width={'100%'}
-          height={'100%'}
+          width="100%"
+          height="100%"
         />
-        <Image 
+        <Image
           src="/icons/4.png"
           className="iconFour"
           alt="4"
-          width={'75%'}
-          height={'75%'}
+          width="75%"
+          height="75%"
         />
       </div>
       <div className="text-center md:p-4">
@@ -38,14 +38,16 @@ export default function FourOhFour() {
         <h3 className="text-gray-500">You look lost on your journey!</h3>
       </div>
       <div className="py-7">
-        <button 
+        <button
+          type="button"
           className="flex justify-center items-center py-3 px-6 bg-red-500 rounded-3xl"
-          onClick={handleBack}  
+          onClick={() => handleBack()}
         >
-          <img 
+          <img
+            className="mr-2"
             src="../icons/arrow-left-w.png"
             width="20px"
-            className="mr-2"
+            alt="back"
           />
           <span className="text-gray-100">Go Back Home</span>
         </button>
@@ -71,5 +73,5 @@ export default function FourOhFour() {
         }
       `} </style>
     </div>
-  )
+  );
 }

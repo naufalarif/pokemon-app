@@ -9,5 +9,5 @@ export default function Layout({ children, active }) {
       {children}
       <Footer />
     </div>
-  )
+  );
 }

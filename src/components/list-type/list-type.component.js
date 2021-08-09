@@ -2,7 +2,7 @@ import isEmpty from "lodash/isEmpty";
 
 import { CardType } from "components";
 
-const Categories = (props) => {
+const ListType = (props) => {
   const { payload, type, setType } = props;
   const displayType = !isEmpty(payload) &&
     payload.map((item) => <CardType type={type} setType={setType} payload={item} />);
@@ -33,4 +33,4 @@ const Categories = (props) => {
   );
 };
 
-export default Categories;
+export default ListType;

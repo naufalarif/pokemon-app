@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
-import { getDetailPokemon } from "services/api";
+import { getDetailPokemonAPI } from "services/api";
 import { CardEvolution, Loading } from "components";
 
 const CardEvolutionContainer = ({ name }) => {
   const { data, isLoading, isError } =
-    useQuery(`evolution/${name}`, () => getDetailPokemon(name));
+    useQuery(`evolution/${name}`, () => getDetailPokemonAPI(name));
   if (isLoading) return <Loading />;
   if (isError) return <span>This Pokemon doesn&apos;t have evolution</span>;
 

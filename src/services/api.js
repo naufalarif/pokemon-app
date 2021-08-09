@@ -10,7 +10,7 @@ const Api = axios.create({
   timeout: 10000,
 });
 
-export const getTypePokemon = async (limit) => {
+export const getTypePokemonAPI = async (limit) => {
   try {
     const response = await Api.get(`/type?limit=${limit}&offset=0`);
     return response.data;
@@ -19,7 +19,7 @@ export const getTypePokemon = async (limit) => {
   }
 };
 
-export const getAllPokemon = async (limit) => {
+export const getAllPokemonAPI = async (limit) => {
   try {
     const response = await Api.get(`/pokemon?limit=${limit}&offset=0`);
     return response.data;
@@ -28,7 +28,7 @@ export const getAllPokemon = async (limit) => {
   }
 };
 
-export const getDetailPokemon = async (name) => {
+export const getDetailPokemonAPI = async (name) => {
   try {
     const response = await Api.get(`/pokemon/${name}`);
     return response.data;
@@ -46,7 +46,7 @@ export const getPokemonByTypeAPI = async (type) => {
   }
 };
 
-export const getDetailAbility = async (ability) => {
+export const getDetailAbilityAPI = async (ability) => {
   try {
     const response = await Api.get(`/ability/${ability}`);
     return response.data;

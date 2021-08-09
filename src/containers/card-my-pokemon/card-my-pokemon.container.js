@@ -2,19 +2,19 @@
 import { useQuery } from 'react-query';
 
 // Components
-import { CardPokemon, CardSkeleton } from 'components';
+import { CardMyPokemon, CardSkeleton } from 'components';
 
 // Api
 import { getDetailPokemonAPI } from '../../services/api';
 
-const CardPokemonContainer = ({ payload }) => {
+const CardMyPokemonContainer = ({ payload }) => {
   const { data, isLoading, isError } =
-    useQuery(`pokemon/${payload.name}`, () => getDetailPokemonAPI(payload.name));
+    useQuery(`my-pokemon/${payload.data}`, () => getDetailPokemonAPI(payload.data));
 
   if (isLoading) return <CardSkeleton />;
   if (isError) return <div><span>Something Wrong...</span></div>;
 
-  return <CardPokemon payload={data} />;
+  return <CardMyPokemon payload={data} />;
 };
 
-export default CardPokemonContainer;
+export default CardMyPokemonContainer;

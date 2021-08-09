@@ -5,23 +5,18 @@ import isEmpty from 'lodash/isEmpty';
 import { useQuery, useInfiniteQuery } from 'react-query';
 
 // Components
-import {
-  Layout,
-  PaginationPokemon,
-  Categories,
-  InputSearch,
-} from 'components';
-import { ListSearch, ListByCategories } from 'containers';
+import { Layout, PaginationPokemon, ListType, InputSearch, Loading } from 'components';
+import { ListSearch, ListByType } from 'containers';
 
 // Utils
-import { getAllPokemon, getTypePokemon } from 'services/api';
+import { getAllPokemonAPI, getTypePokemonAPI } from 'services/api';
 
 // Server Side Rendering
-export async function getServerSideProps() {
-  const resType = await getTypePokemon(20);
+export async function getStaticProps() {
+  const resType = await getTypePokemonAPI(20);
   const dataType = await resType;
 
-  const resPokemon = await getAllPokemon(20);
+  const resPokemon = await getAllPokemonAPI(20);
   const dataPokemon = await resPokemon;
 
   return { props: { dataType, dataPokemon } };
@@ -35,9 +30,12 @@ export default function Pokedex(props) {
 
   // React Query
   const { data: dataType } =
-    useQuery('types', () => getTypePokemon(20), { initialData: props.dataType });
+    useQuery('types', () => getTypePokemonAPI(20), { initialData: props.dataType });
   const { data: dataPokemon, isError, isLoading } =
-    useInfiniteQuery('pokemon', () => getAllPokemon(limit), { initialData: props.dataPokemon });
+    useInfiniteQuery('pokemon', () => getAllPokemonAPI(limit), { initialData: props.dataPokemon });
+
+  if (isLoading) return <Loading />;
+  if (isError) return <span>Something wrong</span>;
 
   // Payload
   const payloadType = dataType.results;
@@ -56,7 +54,7 @@ export default function Pokedex(props) {
         isLoading={isLoading}
       />;
   } else if (!pokemonName) {
-    displayData = <ListByCategories type={type} />;
+    displayData = <ListByType type={type} />;
   } else {
     displayData = <ListSearch name={pokemonName} />;
   }
@@ -64,7 +62,7 @@ export default function Pokedex(props) {
   return (
     <Layout active="pokedex">
       <InputSearch setPokemonName={setPokemonName} />
-      <Categories
+      <ListType
         payload={payloadType}
         setType={setType}
         type={type}

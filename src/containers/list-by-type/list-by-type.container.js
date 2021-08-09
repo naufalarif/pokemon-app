@@ -9,7 +9,7 @@ import { CardPokemonContainer } from 'containers';
 // Api
 import { getPokemonByTypeAPI } from '../../services/api';
 
-const ListByCategories = ({ type }) => {
+const ListByType = ({ type }) => {
   const { data, isLoading, isError } = useQuery(`type/${type}`, () => getPokemonByTypeAPI(type));
   
   if (isLoading) return <Loading />;
@@ -34,4 +34,4 @@ const ListByCategories = ({ type }) => {
   );
 };
 
-export default ListByCategories;
+export default ListByType;

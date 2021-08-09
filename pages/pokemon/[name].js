@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 import {
   Layout,
   ListAbility,
-  ListTypes,
+  ListEffects,
   Stats,
   Loading,
   DetailForm,
@@ -17,13 +17,13 @@ import { Species } from 'containers';
 import { extractNumber, firstUpperCase, removeSymbol, imageConvert } from 'utils';
 
 // Api
-import { getAllPokemon, getDetailPokemon } from 'services/api';
+import { getAllPokemonAPI, getDetailPokemonAPI } from 'services/api';
 import { useQuery } from 'react-query';
 
 
 // Static Site Generotor
 export async function getStaticPaths() {
-  const res = await getAllPokemon(20);
+  const res = await getAllPokemonAPI(1118);
   const paths = res.results.map((pokemon) => ({
     params: { name: pokemon.name },
   }));
@@ -31,7 +31,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await getDetailPokemon(params.name);
+  const res = await getDetailPokemonAPI(params.name);
   const data = await res;
   return { props: { data, params } };
 }
@@ -40,7 +40,7 @@ export default function Pokemon(props) {
   const { data, isLoading, isError } =
     useQuery(
       `detail/${props.params.name}`,
-      () => getDetailPokemon(props.params.name),
+      () => getDetailPokemonAPI(props.params.name),
       { initialData: props.data,
     });
     
@@ -102,7 +102,7 @@ export default function Pokemon(props) {
         >
           {/* Left */}
           <div id="left">
-            <ListTypes payload={data} />
+            <ListEffects payload={data} />
           </div>
 
           {/* Right */}

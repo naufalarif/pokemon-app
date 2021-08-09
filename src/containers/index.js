@@ -1,6 +1,6 @@
 import Home from "./home";
 import Ability from "./ability";
-import Types from "./types";
+import Effects from "./effects";
 import Evolution from "./evolution";
 import Species from "./species";
 
@@ -9,15 +9,15 @@ import CardPokemonContainer from "./card-pokemon";
 import CardSearchContainer from "./card-search";
 import CardEvolutionContainer from "./card-evolution";
 import CardAdventureContainer from "./card-adventure";
+import CardMyPokemonContainer from "./card-my-pokemon";
 
 // List
-import ListByCategories from "./list-by-categories";
+import ListByType from "./list-by-type";
 import ListSearch from "./list-search";
-import ListEvolution from "./list-evolution";
 
 export {
   Home,
-  Types,
+  Effects,
   Ability,
   Evolution,
   Species,
@@ -26,8 +26,8 @@ export {
   CardSearchContainer,
   CardEvolutionContainer,
   CardAdventureContainer,
+  CardMyPokemonContainer,
 
-  ListByCategories,
+  ListByType,
   ListSearch,
-  ListEvolution,
 };

@@ -1,1 +1,0 @@
-export { default } from "./list-by-categories.container";

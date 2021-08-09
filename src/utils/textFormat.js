@@ -6,10 +6,14 @@ export function removeSymbol(word) {
   return word.replace(/[^a-zA-Z ]/g, " ");
 }
 
+export function convertToSlug(word) {
+  return word.replace(/\s/g, '-');
+}
+
 export function extractNumber(number) {
-  if (number < 10) return `00${number}`
-  else if (number < 100 && number > 10) return `0${number}`
-  else if (number > 100) return number
+  if (number < 10) return `00${number}`;
+  if (number < 100 && number > 10) return `0${number}`;
+  return number;
 }
 
 export function dateUtils(date) {
@@ -26,7 +30,7 @@ export function dateUtils(date) {
   datePayload.setMinutes(0);
   datePayload.setSeconds(0, 0);
 
-  if (now - datePayload >= twoDaysAgo) { return datePayload.toString().slice(0, 15) }
-  else if (now - datePayload == yesterday) { return "Yesterday" }
-  else { return "Today" }
+  if (now - datePayload >= twoDaysAgo) return datePayload.toString().slice(0, 15);
+  if (now - datePayload == yesterday) return "Yesterday";
+  return "Today";
 }

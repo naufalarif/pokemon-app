@@ -1,12 +1,14 @@
 import Layout from "./layout";
 import EmptyState from "./empty-state";
-import Categories from "./categories";
 import PaginationPokemon from "./pagination";
 
 // List
+import ListType from "./list-type";
 import ListSearch from "../containers/list-search";
 import ListAbility from "./list-ability";
-import ListTypes from "./list-types";
+import ListEffects from "./list-effects";
+import ListEvolution from "./list-evolution";
+import ListMyPokemon from "./list-my-pokemon";
 
 // Card
 import CardAdventure from "./card-adventure";
@@ -20,7 +22,7 @@ import CardSearch from "./card-search";
 
 // Detail
 import DetailAbility from "./detail-ability";
-import DetailTypes from "./detail-types";
+import DetailEffect from "./detail-effect";
 import DetailForm from "./detail-form";
 import DetailAppereance from "./detail-appereance";
 
@@ -51,20 +53,22 @@ export {
   CardSearch,
   
   DetailAbility,
-  DetailTypes,
+  DetailEffect,
   DetailForm,
   DetailAppereance,
   
   Loading,
   LoadingPokeball,
   
+  ListType,
   ListSearch,
   ListAbility,
-  ListTypes,
+  ListEffects,
+  ListEvolution,
+  ListMyPokemon,
   PaginationPokemon,
   
   Stats,
-  Categories,
   InputSearch,
   ImageLoader,
   

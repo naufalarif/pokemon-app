@@ -25,7 +25,7 @@ export default function CardPokemon({ payload }) {
   const myLoader = ({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`;
 
   const handleNavigation = () => {
-    router.push({ pathname: `/pokemon/${name}` });
+    router.push({ pathname: `/pokemon/${payload.name}` });
   };
 
   return (

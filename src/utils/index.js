@@ -1,6 +1,12 @@
 import { imageConvert } from "./imageUtils";
 import { extractTypes, extractStats } from "./pokemonTypes";
-import { firstUpperCase, removeSymbol, extractNumber, dateUtils } from "./textFormat";
+import {
+  firstUpperCase,
+  removeSymbol,
+  extractNumber,
+  dateUtils,
+  convertToSlug,
+} from "./textFormat";
 import { gachaList } from "./gachaList";
 
 export {
@@ -12,4 +18,5 @@ export {
   removeSymbol,
   dateUtils,
   gachaList,
+  convertToSlug,
 };

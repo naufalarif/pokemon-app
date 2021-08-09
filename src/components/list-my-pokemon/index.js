@@ -1,0 +1,1 @@
+export { default } from "./list-my-pokemon.component";

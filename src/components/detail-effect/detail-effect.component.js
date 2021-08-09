@@ -1,7 +1,7 @@
 import isEmpty from "lodash/isEmpty";
 import { firstUpperCase, extractTypes } from "utils";
 
-export default function DetailTypes({ data }) {
+export default function DetailEffect({ data }) {
   const payload = !isEmpty(data) ? data : {};
 
   const typesName = firstUpperCase(data.name);
