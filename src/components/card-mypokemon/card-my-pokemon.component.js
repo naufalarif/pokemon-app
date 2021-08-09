@@ -10,13 +10,14 @@ import { firstUpperCase, removeSymbol, extractTypes, imageConvert } from 'utils'
 
 export default function CardMyPokemon({ payload }) {
   const router = useRouter();
+  const { data } = payload;
   
-  const name = removeSymbol(payload.name);
+  const name = removeSymbol(data.name);
   // Check Image
-  const { dream_world: { front_default: frontDefault } } = payload.sprites.other;
+  const { dream_world: { front_default: frontDefault } } = data.sprites.other;
   const img = imageConvert(frontDefault);
   // Loop Types
-  const types = payload.types.map((item, idx) => {
+  const types = data.types.map((item, idx) => {
     const typeCheck = extractTypes(item.type.name);
     return <div className={`mr-3 mb-1 ${typeCheck} px-3 py-1 rounded-xl font-bold`}>
         {firstUpperCase(item.type.name)}
@@ -24,7 +25,7 @@ export default function CardMyPokemon({ payload }) {
   });
   
   const handleNavigation = () => {
-    router.push({ pathname: `/pokemon/${payload.name}` });
+    router.push({ pathname: `/pokemon/${data.name}` });
   };
 
   return (
@@ -41,7 +42,7 @@ export default function CardMyPokemon({ payload }) {
         />
       </div>
       <div>
-        <h4 className="font-extrabold text-xl capitalize mb-3">{name} - #{payload.order}</h4>
+        <h4 className="font-extrabold text-xl capitalize mb-3">{name} - #{data.order}</h4>
         <div className="flex flex-wrap mb-3">{types}</div>
         {/* <div>
           <div className="flex items-center mb-2">

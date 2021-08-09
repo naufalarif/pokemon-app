@@ -30,7 +30,7 @@ export function dateUtils(date) {
   datePayload.setMinutes(0);
   datePayload.setSeconds(0, 0);
 
-  if (now - datePayload >= twoDaysAgo) return datePayload.toString().slice(0, 15);
-  if (now - datePayload == yesterday) return "Yesterday";
-  return "Today";
+  if (now - datePayload >= twoDaysAgo) { return datePayload.toString().slice(0, 15) }
+  else if (now - datePayload == yesterday) { return "Yesterday" }
+  else { return "Today" }
 }

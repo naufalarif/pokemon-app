@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+
+// Components
 import { Layout, ListMyPokemon } from "components";
 
 export default function MyPokemon() {

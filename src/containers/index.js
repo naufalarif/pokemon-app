@@ -9,7 +9,6 @@ import CardPokemonContainer from "./card-pokemon";
 import CardSearchContainer from "./card-search";
 import CardEvolutionContainer from "./card-evolution";
 import CardAdventureContainer from "./card-adventure";
-import CardMyPokemonContainer from "./card-my-pokemon";
 
 // List
 import ListByType from "./list-by-type";
@@ -26,7 +25,6 @@ export {
   CardSearchContainer,
   CardEvolutionContainer,
   CardAdventureContainer,
-  CardMyPokemonContainer,
 
   ListByType,
   ListSearch,

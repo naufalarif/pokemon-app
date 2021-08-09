@@ -1,41 +1,33 @@
 import { useEffect, useState } from "react";
-import { CardHistory, Layout, EmptyState } from "components";
+
+// Components
+import { Layout, ListHistory } from "components";
 
 export default function History() {
-  const [data, setData] = useState([]);
-  const [sort, setSort] = useState(null);
+  const [ data, setData ] = useState([]);
+  const [ sort, setSort ] = useState(null);
+
+  const filterSuccess = sort ? 'bg-blue-500 text-gray-100' : 'bg-gray-100 text-blue-500';
+  const filterFailed = sort === false ? 'bg-blue-500 text-gray-100' : 'bg-gray-100 text-blue-500';
 
   useEffect(() => {
     const getHistory = () => {
-      const data = JSON.parse(localStorage.getItem('history'));
-      if (data) {
-        setData(data);
+      const history = JSON.parse(localStorage.getItem('history'));
+      if (history) {
+        setData(history);
       }
     };
 
     getHistory();
-  }, []);
-  
+  }, [ ]);
+
   const toggleSort = (status) => {
     setSort(status);
   };
 
-  const filterBySuccess = !data || data.length > 0 ? data.filter(item => item.status === true) : <EmptyState />;
-  const filterByFailure = !data || data.length > 0 ? data.filter(item => item.status === false) : <EmptyState />;
-  const displayFilter = sort ? filterBySuccess : filterByFailure;
-  const displayData = sort === null ? data : displayFilter;
-
-  const displayHistory = !data || data.length <= 0 
-    ? <EmptyState />
-    : displayData.map((item, idx) => 
-        <CardHistory key={idx} payload={item} />
-      );
-  const filterSuccess = sort ? 'bg-blue-500 text-gray-100' : 'bg-gray-100 text-blue-500';
-  const filterFailed = sort === false ? 'bg-blue-500 text-gray-100' : 'bg-gray-100 text-blue-500';
-
   return (
     <Layout active="history">
-      <div className={`flex flex-col items-center`}>
+      <div className="flex flex-col items-center">
         <h1 className="py-7 text-3xl font-extrabold text-gray-700">Gacha History</h1>
         <div className="flex flex-wrap items-center mb-1 pb-6 px-4">
           <div>
@@ -43,6 +35,7 @@ export default function History() {
           </div>
           <div>
             <button
+              type="button"
               className={`
                 px-5 py-2 rounded-3xl font-bold
                 ${filterSuccess} mr-4
@@ -53,6 +46,7 @@ export default function History() {
               Success
             </button>
             <button
+              type="button"
               className={`
                 px-5 py-2 rounded-3xl font-bold
                 ${filterFailed} mr-4
@@ -63,6 +57,7 @@ export default function History() {
               Failed
             </button>
             <button
+              type="button"
               className={`
                 px-4 py-2 rounded-3xl font-bold
                 bg-red-200 text-red-500
@@ -74,10 +69,8 @@ export default function History() {
             </button>
           </div>
         </div>
-        <div className="w-11/12 sm:w-3/5 lg:w-3/5 xl:w-2/6 mb-7 pt-7 border-t-2">
-          {displayHistory}
-        </div>
+        <ListHistory payload={data} sort={sort} />
       </div>
     </Layout>
-  )
+  );
 }

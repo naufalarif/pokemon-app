@@ -1,37 +1,42 @@
-import Image from 'next/image';
+// Components
+import { ImageLoader } from 'components';
 
 // Utils
-import { getHistoryGacha } from "../../services/api";
-import { dateUtils, firstUpperCase, removeSymbol, extractTypes, imageConvert } from "utils";
-
-// Component
-import CardSkeleton from "../card-skeleton";
+import { dateUtils, removeSymbol, extractTypes, imageConvert } from "utils";
 
 export default function CardHistory({ payload }) {
-  const { data, isLoading, isError } = getHistoryGacha(payload.data);
-  if (isLoading) return <CardSkeleton />
-  if (isError) return <span>Something wrong...</span>
-
-  const myLoader = ({ src, width, quality }) => {
-    return `${src}?w=${width}&q=${quality || 75}`
-  }
+  const { data } = payload;
 
   // Check Image
-  const { dream_world: { front_default } } = data.sprites.other;
-  const img = imageConvert(front_default)
+  const { dream_world: { front_default: frontDefault } } = data.sprites.other;
+  const img = imageConvert(frontDefault);
 
   // Loop Types
-  const types = data.types.map((item, idx) => {
+  const types = data.types.map((item) => {
     const typeCheck = extractTypes(item.type.name);
-    return <div key={idx} className={`mx-1 mb-1 ${typeCheck} px-3 py-1 rounded-xl font-bold`}>
+    return (
+      <div
+        key={item.type.name}
+        className={`mx-1 mb-1 
+        ${typeCheck} px-3 py-1 rounded-xl font-bold`}
+      >
         <span className="capitalize">{item.type.name}</span>
       </div>
+    );
   });
 
   const name = removeSymbol(data.name);
-  const status = payload.status 
-    ? <div className="-mt-10 lg:mt-0"><span className="font-extrabold text-xl text-green-500">Success</span></div>
-    : <div className="-mt-10 lg:mt-0"><span className="font-extrabold text-xl text-red-600">Failed</span></div>
+  const displayStatus = payload.status
+    ? <div className="-mt-10 lg:mt-0">
+        <span className="font-extrabold text-xl text-green-500">
+          Success
+        </span>
+      </div>
+    : <div className="-mt-10 lg:mt-0">
+        <span className="font-extrabold text-xl text-red-600">
+          Failed
+        </span>
+      </div>;
 
   return (
     <div className="flex grid relative
@@ -43,10 +48,9 @@ export default function CardHistory({ payload }) {
         <h4 className="font-extrabold text-gray-500 text-sm mr-2">{dateUtils(payload.date)}</h4>
       </div>
       <div className="text-center mt-4 md:mt-0">
-        <Image 
-          loader={myLoader}
+        <ImageLoader
           src={`${img}`}
-          alt='Pokemon'
+          alt="Pokemon"
           width={100}
           height={100}
         />
@@ -56,9 +60,11 @@ export default function CardHistory({ payload }) {
         <div className="flex flex-wrap justify-center my-3">{types}</div>
       </div>
       <div className="text-center mb-3">
-        <h4 className="invisible lg:visible font-extrabold text-gray-500 text-sm mr-2">{dateUtils(payload.date)}</h4>
-        {status}
+        <h4 className="invisible lg:visible font-extrabold text-gray-500 text-sm mr-2">
+          {dateUtils(payload.date)}
+        </h4>
+        {displayStatus}
       </div>
     </div>
-  )
+  );
 }

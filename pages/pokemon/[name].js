@@ -1,5 +1,6 @@
 // Library
 import isEmpty from 'lodash/isEmpty';
+import { useQuery } from 'react-query';
 
 // Components
 import {
@@ -18,7 +19,6 @@ import { extractNumber, firstUpperCase, removeSymbol, imageConvert } from 'utils
 
 // Api
 import { getAllPokemonAPI, getDetailPokemonAPI } from 'services/api';
-import { useQuery } from 'react-query';
 
 
 // Static Site Generotor

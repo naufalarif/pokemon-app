@@ -29,7 +29,7 @@ export default function CardAdventure(props) {
       // Set Data
       dataStore = {
         date: date.toString(),
-        data: payload.name,
+        data: payload,
         status: true,
       };
 
@@ -57,7 +57,7 @@ export default function CardAdventure(props) {
         const history = JSON.parse(localStorage.getItem('history'));
         dataStore = {
           date: date.toString(),
-          data: payload.name,
+          data: payload,
           status: true,
         };
 
@@ -86,7 +86,7 @@ export default function CardAdventure(props) {
       if (!localStorage.getItem('history')) {
         dataStore = {
           date: date.toString(),
-          data: payload.name,
+          data: payload,
           status: false,
         };
         arrStore.unshift(dataStore);
@@ -99,7 +99,7 @@ export default function CardAdventure(props) {
         const history = JSON.parse(localStorage.getItem('history'));
         dataStore = {
           date: date.toString(),
-          data: payload.name,
+          data: payload,
           status: false,
         };
         history.unshift(dataStore);

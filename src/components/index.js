@@ -9,6 +9,7 @@ import ListAbility from "./list-ability";
 import ListEffects from "./list-effects";
 import ListEvolution from "./list-evolution";
 import ListMyPokemon from "./list-my-pokemon";
+import ListHistory from "./list-history";
 
 // Card
 import CardAdventure from "./card-adventure";
@@ -66,6 +67,7 @@ export {
   ListEffects,
   ListEvolution,
   ListMyPokemon,
+  ListHistory,
   PaginationPokemon,
   
   Stats,
