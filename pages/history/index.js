@@ -19,7 +19,7 @@ export default function History() {
     };
 
     getHistory();
-  }, [ ]);
+  }, []);
 
   const toggleSort = (status) => {
     setSort(status);

@@ -27,12 +27,19 @@ export default function Pokedex(props) {
   const [ type, setType ] = useState('');
   const [ limit, setLimit ] = useState(20);
   const [ pokemonName, setPokemonName ] = useState('');
+  const [ intervalMs, setIntervalMs ] = useState(false);
 
   // React Query
   const { data: dataType } =
     useQuery('types', () => getTypePokemonAPI(20), { initialData: props.dataType });
   const { data: dataPokemon, isError, isLoading } =
-    useInfiniteQuery('pokemon', () => getAllPokemonAPI(limit), { initialData: props.dataPokemon });
+    useInfiniteQuery('pokemon',
+      () => getAllPokemonAPI(limit),
+      {
+        initialData: props.dataPokemon,
+        refetchInterval: intervalMs,
+      },
+    );
 
   if (isLoading) return <Loading />;
   if (isError) return <span>Something wrong</span>;
@@ -52,6 +59,7 @@ export default function Pokedex(props) {
         setLimit={setLimit}
         total={totalPokemon}
         isLoading={isLoading}
+        setIntervalMs={setIntervalMs}
       />;
   } else if (!pokemonName) {
     displayData = <ListByType type={type} />;

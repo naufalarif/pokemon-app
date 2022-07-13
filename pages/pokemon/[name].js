@@ -20,7 +20,6 @@ import { extractNumber, firstUpperCase, removeSymbol, imageConvert } from 'utils
 // Api
 import { getAllPokemonAPI, getDetailPokemonAPI } from 'services/api';
 
-
 // Static Site Generotor
 export async function getStaticPaths() {
   const res = await getAllPokemonAPI(1118);

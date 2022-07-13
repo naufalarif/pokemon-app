@@ -5,15 +5,22 @@ import isEmpty from "lodash/isEmpty";
 import { Loading } from 'components';
 import { CardPokemonContainer } from 'containers';
 import { Waypoint } from "react-waypoint";
+import { useEffect } from "react";
 
 export default function PaginationPokemon(props) {
-  const { payload, limit, setLimit, total, isLoading } = props;
+  const { payload, limit, setLimit, total, isLoading, setIntervalMs } = props;
+
   const handleLoadMore = () => {
     // if (limit < totalPokemon) {
       setLimit((prevState) => prevState + 5);
+      setIntervalMs(1000);
+      setTimeout(() => {
+        setIntervalMs(false);
+      }, 1500);
     // }
   };
 
+  // eslint-disable-next-line consistent-return
   const _renderWayPoint = () => {
     if (!isLoading) {
       return <Waypoint onEnter={handleLoadMore} />;
