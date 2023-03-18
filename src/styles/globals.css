@@ -23,6 +23,12 @@ a {
   box-sizing: border-box;
 }
 
+.wrapper {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
 .bg-normal {
   --tw-bg-opacity: 1;
   background-color: rgba(146, 64, 14, var(--tw-bg-opacity));

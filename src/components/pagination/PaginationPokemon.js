@@ -5,10 +5,9 @@ import isEmpty from "lodash/isEmpty";
 import { Loading } from 'components';
 import { CardPokemonContainer } from 'containers';
 import { Waypoint } from "react-waypoint";
-import { useEffect } from "react";
 
 export default function PaginationPokemon(props) {
-  const { payload, limit, setLimit, total, isLoading, setIntervalMs } = props;
+  const { payload, setLimit, isLoading, setIntervalMs } = props;
 
   const handleLoadMore = () => {
     // if (limit < totalPokemon) {
@@ -32,10 +31,10 @@ export default function PaginationPokemon(props) {
       return (
         <>
           <div
-            className="grid grid-cols-1 sm:grid-cols-3
+            className="grid grid-cols-2 sm:grid-cols-3
               md:grid-cols-4 lg:grid-cols-5 gap-4 pb-7 mb-7"
           >
-            {payload.map((item) => <CardPokemonContainer payload={item} />)}
+            {payload.map((item) => <CardPokemonContainer payload={item} key={item.name} />)}
           </div>
           <div>
             {_renderWayPoint()}

@@ -26,7 +26,8 @@ const CardEvolution = ({ payload }) => {
   };
 
   return (
-    <div className="
+    <div
+      className="
         flex flex-row items-center
         bg-gray-100 rounded-xl py-5 px-4 my-4
         hover:bg-gray-50 cursor-pointer

@@ -6,7 +6,13 @@ export default function Layout({ children, active }) {
   return (
     <div className={styles.layout}>
       <Navbar active={active}/>
-      {children}
+      {active !== "adventure" ? (
+        <div className="wrapper">
+          {children}
+        </div>
+      ): (
+        children
+      )}
       <Footer />
     </div>
   );

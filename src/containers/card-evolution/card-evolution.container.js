@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { getDetailPokemonAPI } from "services/api";
 import { CardEvolution, Loading } from "components";
 
-const CardEvolutionContainer = ({ name }) => {
+const CardEvolutionContainer = ({ name, ...rest }) => {
   const { data, isLoading, isError } =
     useQuery(`evolution/${name}`, () => getDetailPokemonAPI(name));
   if (isLoading) return <Loading />;

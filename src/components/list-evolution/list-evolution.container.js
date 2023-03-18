@@ -25,7 +25,7 @@ const ListEvolution = ({ data }) => {
 
   // Display Evolution
   const displayPokemon = !isEmpty(arrEvolve)
-    && arrEvolve.map((item) => !isEmpty(item) && <CardEvolutionContainer name={item} />);
+    && arrEvolve.map((item) => !isEmpty(item) && <CardEvolutionContainer key={item} name={item} />);
 
   return displayPokemon;
 };

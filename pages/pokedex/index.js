@@ -76,7 +76,7 @@ export default function Pokedex(props) {
         type={type}
       />
       <div id="list-pokemon" className="flex flex-col justify-center items-center">
-        <div className="px-4">
+        <div className="px-2">
           {displayData}
         </div>
       </div>

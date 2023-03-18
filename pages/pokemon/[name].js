@@ -19,6 +19,7 @@ import { extractNumber, firstUpperCase, removeSymbol, imageConvert } from 'utils
 
 // Api
 import { getAllPokemonAPI, getDetailPokemonAPI } from 'services/api';
+import Head from 'next/head';
 
 // Static Site Generotor
 export async function getStaticPaths() {
@@ -73,6 +74,9 @@ export default function Pokemon(props) {
 
   return (
     <Layout active="pokedex">
+      <Head>
+        <title>{name} - Pokemon App</title>
+      </Head>
       <main className="py-4 px-7 bg-gray-200">
         <div id="header" className="flex flex-wrap flex-row justify-between items-end">
           <div className="py-9">

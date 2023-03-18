@@ -14,7 +14,6 @@ class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="description" content="Pokemon App is a mini game to catch pokemon" />
           <meta name="keywords" content="pokemon" />
-          <title>Pokemon App</title>
 
           <link rel="preconnect" href="https://fonts.gstatic.com"/>
           <link

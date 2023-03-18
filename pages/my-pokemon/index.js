@@ -7,13 +7,13 @@ export default function MyPokemon() {
   const [ data, setData ] = useState([]);
 
   useEffect(() => {
-    const getHistory = () => {
-      const mine = JSON.parse(localStorage.getItem('mine'));
-      setData(mine);
-    };
-
     getHistory();
   }, []);
+  
+  function getHistory() {
+    const mine = JSON.parse(localStorage.getItem('mine'));
+    setData(mine);
+  };
 
   return (
     <Layout active="mypokemon">

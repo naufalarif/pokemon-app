@@ -17,9 +17,11 @@ export default function CardPokemon({ payload }) {
   // Loop Types
   const types = payload.types.map((item) => {
     const typeCheck = extractTypes(item.type.name);
-    return <div className={`mx-1 mb-1 ${typeCheck} px-3 py-1 rounded-xl font-bold`}>
+    return (
+      <div key={item.type.name} className={`mx-1 mb-1 ${typeCheck} px-3 py-1 rounded-xl font-bold`}>
         {firstUpperCase(item.type.name)}
-      </div>;
+      </div>
+    );
   });
 
   const myLoader = ({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`;

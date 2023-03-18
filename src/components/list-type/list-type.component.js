@@ -5,15 +5,15 @@ import { CardType } from "components";
 const ListType = (props) => {
   const { payload, type, setType } = props;
   const displayType = !isEmpty(payload) &&
-    payload.map((item) => <CardType type={type} setType={setType} payload={item} />);
+    payload.map((item) => (
+      <CardType type={type} setType={setType} payload={item} key={item.name} />
+    ));
 
-  const handleClearType = () => {
-    setType('');
-  };
+  const handleClearType = () => setType('');
 
   return (
     <div id="types" className="flex justify-center items-center p-4 pb-7 mb-1">
-      <div className="flex flex-nowrap overflow-auto w-10/12 md:w-4/5 lg:w-3/5 mr-4">
+      <div className="flex flex-nowrap overflow-auto mr-4">
         {displayType}
       </div>
       <div>

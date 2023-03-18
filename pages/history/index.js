@@ -11,19 +11,17 @@ export default function History() {
   const filterFailed = sort === false ? 'bg-blue-500 text-gray-100' : 'bg-gray-100 text-blue-500';
 
   useEffect(() => {
-    const getHistory = () => {
-      const history = JSON.parse(localStorage.getItem('history'));
-      if (history) {
-        setData(history);
-      }
-    };
-
     getHistory();
   }, []);
 
-  const toggleSort = (status) => {
-    setSort(status);
+  function getHistory() {
+    const history = JSON.parse(localStorage.getItem('history'));
+    if (history) {
+      setData(history);
+    }
   };
+
+  const toggleSort = (status) => setSort(status);
 
   return (
     <Layout active="history">
