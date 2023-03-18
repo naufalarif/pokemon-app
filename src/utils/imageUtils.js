@@ -1,4 +1,4 @@
 export function imageConvert(img) {
-  if (img) { return img }
-  else { return '/imgs/mystery.png' }
+  if (img) return img;
+  return '/imgs/mystery.png';
 }
