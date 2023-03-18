@@ -118,3 +118,21 @@ a {
   --tw-bg-opacity: 1;
   background-color: rgba(236, 72, 153, var(--tw-bg-opacity));
 }
+
+@media (min-width: 1280px) {
+  .iconFour {
+    width: 14% !important;
+  }
+
+  .iconPokeball {
+    width: 20% !important;
+  }
+}
+
+.iconFour {
+  width: 25%;
+}
+
+.iconPokeball {
+  width: 35%;
+}

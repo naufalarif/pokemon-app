@@ -52,26 +52,6 @@ export default function FourOhFour() {
           <span className="text-gray-100">Go Back Home</span>
         </button>
       </div>
-
-      <style jsx> {`
-        @media (min-width: 1280px) {
-          .iconFour {
-            width: 14% !important;
-          }
-        
-          .iconPokeball {
-            width: 20% !important;
-          }
-        }
-        
-        .iconFour {
-          width: 25%;
-        }
-        
-        .iconPokeball {
-          width: 35%;
-        }
-      `} </style>
     </div>
   );
 }
