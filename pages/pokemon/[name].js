@@ -23,6 +23,13 @@ import Head from 'next/head';
 
 // Static Site Generotor
 export async function getStaticPaths() {
+  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+    return {
+      paths: [],
+      fallback: 'blocking',
+    };
+  }
+
   const res = await getAllPokemonAPI(1118);
   const paths = res.results.map((pokemon) => ({
     params: { name: pokemon.name },
