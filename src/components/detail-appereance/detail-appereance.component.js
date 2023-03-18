@@ -3,7 +3,7 @@ import { ImageLoader } from "components";
 const DetailAppereance = ({ payload }) => {
   const displayAppereance =
     payload.map((item) => <ImageLoader
-      key={item.idx} src={item.img} width="100px" height="100px" alt="pokemon"/>);
+      key={item.idx} src={item.img} width={100} height={100} alt="pokemon"/>);
   
   return (
     <div className="flex flex-col bg-white rounded-xl p-3 my-2">

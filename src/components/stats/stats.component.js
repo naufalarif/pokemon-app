@@ -1,8 +1,33 @@
 import isEmpty from "lodash/isEmpty";
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  PointElement,
+  LineController,
+  LineElement,
+  TimeScale,
+  Title,
+  Filler,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
 import { Radar } from 'react-chartjs-2';
 
 // Utils
 import { firstUpperCase, removeSymbol } from 'utils';
+
+ChartJS.register(
+  RadialLinearScale,
+  PointElement,
+  LineController,
+  LineElement,
+  TimeScale,
+  Title,
+  Filler,
+  Tooltip,
+  Legend,
+);
 
 const Stats = ({ data }) => {
   const payload = !isEmpty(data) ? data : "";
@@ -38,20 +63,29 @@ const Stats = ({ data }) => {
 
   const options = {
     // maintainAspectRatio: false,
-    scale: {
-      angleLines: {
-        
-      },
-      gridLines: {
-      },
-      ticks: {
-        display: false,
+    scales: {
+      r: {
+        angleLines: {
+        },
+        grid: {
+        },
+        ticks: {
+          display: false,
+        },
         beginAtZero: true,
         suggestedMax: 140,
+        pointLabels: {
+          // fontSize: 16,
+          font: {
+            weight: 'bold',
+          },
+        },
       },
-      pointLabels: {
-        // fontSize: 16,
-        fontStyle: 'bold',
+    },
+    elements: {
+      radar: {
+        backgroundColor: 'rgba(255, 159, 64, 0.5)',
+        fill: true,
       },
     },
   };
@@ -61,7 +95,7 @@ const Stats = ({ data }) => {
       <div className="text-center py-2 mb-2 border-b-2">
         <span className="text-gray-500 font-bold text-2xl">Stats</span>
       </div>
-      <Radar className="chart-container" type="chart" data={dataset} options={options} />
+      <Radar className="chart-container" data={dataset} options={options} />
     </div>
   );
 };
