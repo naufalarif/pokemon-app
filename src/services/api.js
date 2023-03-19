@@ -20,7 +20,6 @@ export const getTypePokemonAPI = async (limit) => {
 };
 
 export const getAllPokemonAPI = async (endpoint = '/pokemon?limit=20&offset=0') => {
-  console.log({ endpoint });
   try {
     const response = await Api.get(endpoint);
     return response.data;

@@ -30,7 +30,7 @@ export async function getStaticPaths() {
     };
   }
 
-  const res = await getAllPokemonAPI();
+  const res = await getAllPokemonAPI('/pokemon?limit=1118&offset=0');
   const paths = res.results.map((pokemon) => ({
     params: { name: pokemon.name },
   }));
