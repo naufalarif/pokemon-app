@@ -11,7 +11,6 @@ import { ListSearch, ListByType } from 'containers';
 
 // Utils
 import { getAllPokemonAPI, getTypePokemonAPI } from 'services/api';
-import useStorePokemon from 'HOC/useStorePokemon';
 
 // Server Side Rendering
 // export async function getStaticProps() {
@@ -35,7 +34,7 @@ export default function Pokedex(props) {
     useQuery('types', () => getTypePokemonAPI(20), { initialData: props.dataType });
   const { data: dataPokemon, isError, isLoading, fetchNextPage } =
     useInfiniteQuery(
-      ['pokemon'],
+      [ 'pokemon' ],
       ({ pageParam }) => getAllPokemonAPI(pageParam),
       {
         getNextPageParam: (lastPage) => lastPage.next ? lastPage.next : undefined,
@@ -48,7 +47,7 @@ export default function Pokedex(props) {
   function storePokemon(data) {
     let res = [];
     data.forEach((items) => {
-      res = [...res, ...items.results];
+      res = [ ...res, ...items.results ];
     });
     return res;
   }
