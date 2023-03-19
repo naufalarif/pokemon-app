@@ -57,8 +57,11 @@ export default function Pokemon(props) {
   // Set Types
   const types = !isEmpty(data.types) && data.types.map((item, idx) => {
     const divider = idx + 1 === data.types.length ? '' : '/';
-    return <span className="text-2xl font-bold text-gray-400 mr-2">
-      {`${firstUpperCase(item.type.name)} ${divider}`}</span>;
+    return (
+      <span className="text-2xl font-bold text-gray-400 mr-2">
+        {`${firstUpperCase(item.type.name)} ${divider}`}
+      </span>
+    );
   });
 
   const name = removeSymbol(data.name);
@@ -82,7 +85,7 @@ export default function Pokemon(props) {
   return (
     <Layout active="pokedex">
       <Head>
-        <title>{name} - Pokemon App</title>
+        <title>{firstUpperCase(name)} - Pokemon App</title>
       </Head>
       <main className="py-4 px-7 bg-gray-200">
         <div id="header" className="flex flex-wrap flex-row justify-between items-end">

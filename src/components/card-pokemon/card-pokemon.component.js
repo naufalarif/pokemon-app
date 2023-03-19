@@ -6,6 +6,8 @@ import Image from 'next/image';
 // Utils
 import { firstUpperCase, removeSymbol, extractTypes, imageConvert } from 'utils';
 
+import styles from './card-component.module.css';
+
 export default function CardPokemon({ payload }) {
   const router = useRouter();
   const name = removeSymbol(payload.name);
@@ -32,7 +34,8 @@ export default function CardPokemon({ payload }) {
 
   return (
     <div
-      className="bg-gray-100 rounded-xl p-4 mx-2 mb-4 cursor-pointer hover:shadow-2xl"
+      className={`bg-gray-100 rounded-xl ${styles.container}
+        p-4 mx-2 mb-4 cursor-pointer hover:shadow-2xl`}
       onClick={handleNavigation}
     >
       <Image
