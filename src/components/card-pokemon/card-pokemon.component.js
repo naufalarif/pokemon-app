@@ -3,10 +3,12 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
+import ImageLoader from 'components/image-loader';
+
 // Utils
 import { firstUpperCase, removeSymbol, extractTypes, imageConvert } from 'utils';
 
-import styles from './card-component.module.css';
+// import styles from './card-component.module.css';
 
 export default function CardPokemon({ payload }) {
   const router = useRouter();
@@ -34,16 +36,14 @@ export default function CardPokemon({ payload }) {
 
   return (
     <div
-      className={`bg-gray-100 rounded-xl ${styles.container}
+      className={`bg-gray-100 rounded-xl 
         p-4 mx-2 mb-4 cursor-pointer hover:shadow-2xl`}
       onClick={handleNavigation}
     >
-      <Image
-        loader={myLoader}
+      <ImageLoader
         src={`${img}`}
         alt={`${name}`}
-        width={500}
-        height={500}
+        fill
       />
       <div className="text-center">
         <h4 className="font-extrabold text-xl capitalize">{name} - #{payload.order}</h4>

@@ -55,6 +55,7 @@ export default function Adventure() {
             alt="left"
             width={50}
             height={50}
+            className={styles.image}
           />
         </div>
         <div className="-mt-12">
@@ -72,6 +73,7 @@ export default function Adventure() {
             alt="right"
             width={50}
             height={50}
+            className={styles.image}
           />
         </div>
         <ModalSuccess isVisible={isSuccess} onClick={handleCloseModal} />

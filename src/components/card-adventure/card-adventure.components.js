@@ -6,6 +6,8 @@ import { ImageLoader } from 'components';
 // Utils
 import { imageConvert, removeSymbol } from 'utils';
 
+import styles from './card-adventure.module.css';
+
 export default function CardAdventure(props) {
   const { payload, setIsLoading, fakeProcess } = props;
   const { dream_world: { front_default: frontDefault } } = payload.sprites.other;
@@ -125,6 +127,7 @@ export default function CardAdventure(props) {
       <div className="text-center absolute bottom-0 left-0 right-0">
           <ImageLoader
             className="cursor-pointer"
+            containerStyles={styles.container}
             onClick={handleGacha}
             src="/imgs/pokeball.png"
             alt="pokemon"

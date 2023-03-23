@@ -30,6 +30,7 @@ import DetailAppereance from "./detail-appereance";
 // Loading
 import Loading from "./loading";
 import LoadingPokeball from "./loading-pokeball";
+import LoadingSkeleton from "./loading-skeleton";
 
 import InputSearch from "./input-search";
 import SearchNotFound from "./search-not-found";
@@ -60,6 +61,7 @@ export {
   
   Loading,
   LoadingPokeball,
+  LoadingSkeleton,
   
   ListType,
   ListSearch,

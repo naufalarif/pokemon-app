@@ -1,84 +1,47 @@
-import { useMemo, useState } from 'react';
-
 // Library
-import isEmpty from 'lodash/isEmpty';
-import get from 'lodash/get';
-import { useQuery, useInfiniteQuery } from 'react-query';
+import { useState } from 'react';
 
 // Components
 import { Layout, PaginationPokemon, ListType, InputSearch, Loading } from 'components';
 import { ListSearch, ListByType } from 'containers';
 
-// Utils
-import { getAllPokemonAPI, getTypePokemonAPI } from 'services/api';
+// Hooks
+import { useGetAllPokemon } from 'hooks/useGetAllPokemon';
+import { useGetPokemonTypes } from 'hooks/useGetPokemonTypes';
 
-// Server Side Rendering
-// export async function getStaticProps() {
-//   const resType = await getTypePokemonAPI(20);
-//   const dataType = await resType;
-
-//   const resPokemon = await getAllPokemonAPI(20);
-//   const dataPokemon = await resPokemon;
-
-//   return { props: { dataType, dataPokemon } };
-// }
-
-export default function Pokedex(props) {
+export default function Pokedex() {
   // State
   const [ type, setType ] = useState('');
-  const [ limit, setLimit ] = useState(0);
   const [ pokemonName, setPokemonName ] = useState('');
 
-  // React Query
-  const { data: dataType } =
-    useQuery('types', () => getTypePokemonAPI(20), { initialData: props.dataType });
-  const { data: dataPokemon, isError, isLoading, fetchNextPage } =
-    useInfiniteQuery(
-      [ 'pokemon' ],
-      ({ pageParam }) => getAllPokemonAPI(pageParam),
-      {
-        getNextPageParam: (lastPage) => lastPage.next ? lastPage.next : undefined,
-      },
-    );
+  // Hooks
+  const { types } = useGetPokemonTypes();
+  const { pokemons, isError, isLoading, fetchNextPage, total } = useGetAllPokemon();
 
   if (isLoading) return <Loading />;
   if (isError) return <span>Something wrong</span>;
-
-  function storePokemon(data) {
-    let res = [];
-    data.forEach((items) => {
-      res = [ ...res, ...items.results ];
-    });
-    return res;
-  }
-
-  // Payload
-  const payloadType = dataType.results;
-  const total = get(dataPokemon, 'pages', []).length - 1;
-  const payloadPokemon = !isEmpty(dataPokemon.pages) ? storePokemon(dataPokemon.pages) : [];
-  const totalPokemon = !isEmpty(dataPokemon.pages) ? dataPokemon.pages[total].count : 0;
 
   // Display Data
   let displayData;
   if (!type && !pokemonName) {
     displayData =
       <PaginationPokemon
-        payload={payloadPokemon}
-        total={totalPokemon}
+        payload={pokemons}
+        total={total}
         isLoading={isLoading}
         fetchNextPage={fetchNextPage}
       />;
   } else if (!pokemonName) {
     displayData = <ListByType type={type} />;
   } else {
-    displayData = <ListSearch name={pokemonName} />;
+    displayData = <ListSearch name={pokemonName} pokemonName={pokemonName} />;
   }
 
   return (
     <Layout active="pokedex">
-      <InputSearch setPokemonName={setPokemonName} />
+      <InputSearch setName={setPokemonName} name={pokemonName} />
       <ListType
-        payload={payloadType}
+        payload={types}
         setType={setType}
         type={type}
       />

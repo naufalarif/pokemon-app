@@ -1,23 +1,24 @@
-// Library
-import { useQuery } from 'react-query';
-
 // Components
-import { Loading, SearchNotFound } from "components";
-import { CardSearchContainer } from "containers";
+import { LoadingSkeleton, SearchNotFound } from "components";
+import { CardPokemonContainer } from "containers";
 
 // Utils
 import { convertToSlug } from 'utils';
-
-// Api
-import { getDetailPokemonAPI } from "../../services/api";
+import useSearchPokemon from 'hooks/useSearchPokemon';
 
 export default function ListSearch({ name }) {
   const slug = convertToSlug(name);
-  const { data, isLoading, isError } =
-    useQuery(`search/list/${name}`, () => getDetailPokemonAPI(slug));
+  const { pokemon, isLoading, isError, isNotFound } = useSearchPokemon(name, slug);
 
-  if (isLoading) return <Loading />;
-  if (isError) return <SearchNotFound name={name} />;
-  
-  return <CardSearchContainer payload={data} />;
+  if (isLoading) return <LoadingSkeleton />;
+  if (isError || isNotFound) return <SearchNotFound name={name} />;
+
+  return (
+    <div
+      className="grid grid-cols-2 sm:grid-cols-3
+        md:grid-cols-4 lg:grid-cols-5 gap-4 pb-7 mb-7"
+    >
+      <CardPokemonContainer payload={pokemon} />
+    </div>
+  );
 }
