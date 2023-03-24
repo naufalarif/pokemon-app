@@ -1,5 +1,5 @@
 import { DetailAbility, Loading } from "components";
-import useGetAbilityPokemon from "hooks/useGetAbilityPokemon";
+import { useGetAbilityPokemon } from "hooks";
 
 const Ability = ({ name }) => {
   const { ability, isLoading, isError } = useGetAbilityPokemon(`ability/${name}`, name);

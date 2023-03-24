@@ -19,7 +19,7 @@ import { extractNumber, firstUpperCase, removeSymbol, imageConvert } from 'utils
 // Api
 import { getAllPokemonAPI, getDetailPokemonAPI } from 'services/api';
 import Head from 'next/head';
-import useSearchPokemon from 'hooks/useSearchPokemon';
+import { useSearchPokemon } from 'hooks';
 
 // Static Site Generotor
 export async function getStaticPaths() {

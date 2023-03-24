@@ -1,5 +1,5 @@
 import { Loading, ListEvolution } from "components";
-import useGetEvolutionPokemon from "hooks/useGetEvolutionPokemon";
+import { useGetEvolutionPokemon } from "hooks";
 
 const Evolution = ({ url, name }) => {
   const { evolutions, isLoading, isError  } = useGetEvolutionPokemon(`list/evolution/${name}`, url);

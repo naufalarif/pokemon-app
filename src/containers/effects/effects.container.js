@@ -1,5 +1,5 @@
 import { DetailEffect, Loading } from "components";
-import useGetPokemonByTypes from "hooks/useGetPokemonByTypes";
+import { useGetPokemonByTypes } from "hooks";
 
 const Effects = ({ types }) => {
   const { type, isLoading, isError } = useGetPokemonByTypes(`detail/types${types}`, types);

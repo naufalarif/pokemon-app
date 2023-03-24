@@ -6,7 +6,7 @@ import { LoadingSkeleton } from 'components';
 import { CardPokemonContainer } from 'containers';
 
 // Hooks
-import useGetPokemonByTypes from 'hooks/useGetPokemonByTypes';
+import { useGetPokemonByTypes } from "hooks";
 
 const ListByType = ({ type }) => {
   const { pokemonByTypes, isLoading, isError } = useGetPokemonByTypes(`type/${type}`, type);

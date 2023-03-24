@@ -6,7 +6,7 @@ import { Evolution } from "containers";
 import { LoadingPokeball } from 'components';
 
 // Hooks
-import useGetSpeciesPokemon from "hooks/useGetSpeciesPokemon";
+import { useGetSpeciesPokemon } from "hooks";
 
 const Species = ({ name }) => {
   const { isLoading, isError, evolutionUrl } = useGetSpeciesPokemon(`species/${name}`, name);

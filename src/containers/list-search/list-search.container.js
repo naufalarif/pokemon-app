@@ -4,7 +4,7 @@ import { CardPokemonContainer } from "containers";
 
 // Utils
 import { convertToSlug } from 'utils';
-import useSearchPokemon from 'hooks/useSearchPokemon';
+import { useSearchPokemon } from 'hooks';
 
 export default function ListSearch({ name }) {
   const slug = convertToSlug(name);

@@ -1,5 +1,5 @@
 import { CardAdventure, LoadingPokeball } from "components";
-import useSearchPokemon from "hooks/useSearchPokemon";
+import { useSearchPokemon } from 'hooks';
 
 const CardAdventureContainer = (props) => {
   const { id, setIsLoading, fakeProcess } = props;

@@ -2,7 +2,7 @@
 import { CardPokemon, CardSkeleton } from 'components';
 
 // Hooks
-import useSearchPokemon from 'hooks/useSearchPokemon';
+import { useSearchPokemon } from 'hooks';
 
 const CardPokemonContainer = ({ payload }) => {
   const { pokemon, isLoading, isError } = useSearchPokemon(`pokemon/${payload.name}`, payload.name);

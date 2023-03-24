@@ -6,8 +6,7 @@ import { Layout, PaginationPokemon, ListType, InputSearch, Loading } from 'compo
 import { ListSearch, ListByType } from 'containers';
 
 // Hooks
-import { useGetAllPokemon } from 'hooks/useGetAllPokemon';
-import { useGetPokemonTypes } from 'hooks/useGetPokemonTypes';
+import { useGetAllPokemon, useGetPokemonTypes } from 'hooks';
 
 export default function Pokedex() {
   // State

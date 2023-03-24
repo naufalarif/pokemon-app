@@ -2,7 +2,7 @@ import get from "lodash/get";
 import { useQuery } from "react-query";
 import { getTypePokemonAPI } from "services/api";
 
-export const useGetPokemonTypes = () => {
+export default function useGetPokemonTypes() {
   const { data, isError, isSuccess, isLoading } = useQuery('types', () => getTypePokemonAPI(20));
 
   return {
