@@ -22,7 +22,7 @@
     "max-len": [
       "error",
       {
-        "code": 100
+        "code": 120
       }
     ],
     "no-param-reassign": "off",
@@ -35,7 +35,7 @@
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "linebreak-style": 0,
     "object-curly-spacing": ["error", "always"],
-    "array-bracket-spacing": ["error", "always"],
+    "array-bracket-spacing": ["error", "always", { "objectsInArrays": true }],
     "no-underscore-dangle": 0,
     "comma-dangle": ["error", "always-multiline"],
     "react/prop-types": 0,

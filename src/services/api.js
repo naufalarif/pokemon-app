@@ -1,6 +1,6 @@
 import useSWR from "swr";
-import config from 'config';
 import axios from "axios";
+import config from '../config';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -10,7 +10,7 @@ const Api = axios.create({
   timeout: 10000,
 });
 
-export const getTypePokemonAPI = async (limit) => {
+export const getTypePokemonAPI = async (limit = 10) => {
   try {
     const response = await Api.get(`/type?limit=${limit}&offset=0`);
     return response.data;
