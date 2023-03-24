@@ -3,8 +3,8 @@ import { useQuery } from "react-query";
 import { getPokemonByTypeAPI } from "services/api";
 
 
-export default function useGetPokemonByTypes(type = '') {
-  const { data, isLoading, isError } = useQuery(`type/${type}`, () => getPokemonByTypeAPI(type));
+export default function useGetPokemonByTypes(queryFn = '', type = '') {
+  const { data, isLoading, isError } = useQuery(queryFn, () => getPokemonByTypeAPI(type));
 
-  return { pokemonByTypes: get(data, 'pokemon', []), isLoading, isError };
+  return { pokemonByTypes: get(data, 'pokemon', []), type: data, isLoading, isError };
 }

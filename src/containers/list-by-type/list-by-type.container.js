@@ -9,7 +9,7 @@ import { CardPokemonContainer } from 'containers';
 import useGetPokemonByTypes from 'hooks/useGetPokemonByTypes';
 
 const ListByType = ({ type }) => {
-  const { pokemonByTypes, isLoading, isError } = useGetPokemonByTypes(type);
+  const { pokemonByTypes, isLoading, isError } = useGetPokemonByTypes(`type/${type}`, type);
   
   if (isLoading) return <LoadingSkeleton />;
   if (isError) return <div><span>Something wrong...</span></div>;

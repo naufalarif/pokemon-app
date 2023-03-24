@@ -1,6 +1,5 @@
 // Library
 import isEmpty from 'lodash/isEmpty';
-import { useQuery } from 'react-query';
 
 // Components
 import {
@@ -20,6 +19,7 @@ import { extractNumber, firstUpperCase, removeSymbol, imageConvert } from 'utils
 // Api
 import { getAllPokemonAPI, getDetailPokemonAPI } from 'services/api';
 import Head from 'next/head';
+import useSearchPokemon from 'hooks/useSearchPokemon';
 
 // Static Site Generotor
 export async function getStaticPaths() {
@@ -43,20 +43,15 @@ export async function getStaticProps({ params }) {
   return { props: { data, params } };
 }
 
-export default function Pokemon(props) {
-  const { data, isLoading, isError } =
-    useQuery(
-      `detail/${props.params.name}`,
-      () => getDetailPokemonAPI(props.params.name),
-      { initialData: props.data,
-    });
+export default function Pokemon({ params }) {
+  const { pokemon, isError, isLoading } = useSearchPokemon(`detail/${params.name}`, params.name);
     
   if (isLoading) return <Loading />;
   if (isError) return <p>Something wrong...</p>;
 
   // Set Types
-  const types = !isEmpty(data.types) && data.types.map((item, idx) => {
-    const divider = idx + 1 === data.types.length ? '' : '/';
+  const types = !isEmpty(pokemon.types) && pokemon.types.map((item, idx) => {
+    const divider = idx + 1 === pokemon.types.length ? '' : '/';
     return (
       <span className="text-2xl font-bold text-gray-400 mr-2">
         {`${firstUpperCase(item.type.name)} ${divider}`}
@@ -64,17 +59,17 @@ export default function Pokemon(props) {
     );
   });
 
-  const name = removeSymbol(data.name);
-  const order = extractNumber(data.order);
-  const species = !isEmpty(data.species) ? data.species.name : '';
+  const name = removeSymbol(pokemon.name);
+  const order = extractNumber(pokemon.order);
+  const species = !isEmpty(pokemon.species) ? pokemon.species.name : '';
 
   // Set Image
-  const imgArtwork = !isEmpty(data.sprites) &&
-    imageConvert(data.sprites.other['official-artwork'].front_default);
-  const imgBackDef = !isEmpty(data.sprites) ? imageConvert(data.sprites.back_default) : '';
-  const imgFrontDef = !isEmpty(data.sprites) ? imageConvert(data.sprites.front_default) : '';
-  const imgFrontShiny = !isEmpty(data.sprites) ? imageConvert(data.sprites.front_shiny) : '';
-  const imgBackShiny = !isEmpty(data.sprites) ? imageConvert(data.sprites.back_shiny) : '';
+  const imgArtwork = !isEmpty(pokemon.sprites) &&
+    imageConvert(pokemon.sprites.other['official-artwork'].front_default);
+  const imgBackDef = !isEmpty(pokemon.sprites) ? imageConvert(pokemon.sprites.back_default) : '';
+  const imgFrontDef = !isEmpty(pokemon.sprites) ? imageConvert(pokemon.sprites.front_default) : '';
+  const imgFrontShiny = !isEmpty(pokemon.sprites) ? imageConvert(pokemon.sprites.front_shiny) : '';
+  const imgBackShiny = !isEmpty(pokemon.sprites) ? imageConvert(pokemon.sprites.back_shiny) : '';
   const imgAppereance = [
     { idx: 1, img: imgBackDef },
     { idx: 2, img: imgFrontDef },
@@ -115,15 +110,15 @@ export default function Pokemon(props) {
         >
           {/* Left */}
           <div id="left">
-            <ListEffects payload={data} />
+            <ListEffects payload={pokemon} />
           </div>
 
           {/* Right */}
           <div id="right">
-            <ListAbility payload={data} />
-            <Stats data={data} />
-            <Species species={species}/>
-            <DetailForm payload={data} />
+            <ListAbility payload={pokemon} />
+            <Stats data={pokemon} />
+            <Species name={species}/>
+            <DetailForm payload={pokemon} />
             <DetailAppereance payload={imgAppereance} />
           </div>
         </div>

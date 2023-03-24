@@ -1,20 +1,14 @@
-// Library
-import { useQuery } from 'react-query';
-
 // Components
 import { CardSearch, CardSkeleton } from 'components';
-
-// Api
-import { getDetailPokemonAPI } from '../../services/api';
+import useSearchPokemon from 'hooks/useSearchPokemon';
 
 const CardSearchContainer = ({ payload }) => {
-  const { data, isLoading, isError } =
-    useQuery(`${payload.name}`, () => getDetailPokemonAPI(payload.name));
+  const { pokemon, isLoading, isError } = useSearchPokemon(`search/${payload.name}`, payload.name);
 
   if (isLoading) return <CardSkeleton />;
   if (isError) return <div><span>Something Wrong...</span></div>;
 
-  return <CardSearch payload={data} />;
+  return <CardSearch payload={pokemon} />;
 };
 
 export default CardSearchContainer;

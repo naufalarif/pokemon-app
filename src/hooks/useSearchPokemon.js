@@ -3,9 +3,9 @@ import get from "lodash/get";
 
 import { getDetailPokemonAPI } from "services/api";
 
-export default function useSearchPokemon(name, slug) {
+export default function useSearchPokemon(queryFn = '', slug = '') {
   const { data, isLoading, isError, isSuccess } =
-    useQuery(`search/list/${name}`, () => getDetailPokemonAPI(slug));
+    useQuery(queryFn, () => getDetailPokemonAPI(slug));
   
   const isNotFound = get(data, 'name', '') === 'Error';
 

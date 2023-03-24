@@ -1,15 +1,13 @@
-import { useQuery } from "react-query";
-import { getDetailAbilityAPI } from "services/api";
 import { DetailAbility, Loading } from "components";
+import useGetAbilityPokemon from "hooks/useGetAbilityPokemon";
 
-const Ability = ({ ability }) => {
-  const { data, isLoading, isError } =
-    useQuery(`ability/${ability}`, () => getDetailAbilityAPI(ability));
+const Ability = ({ name }) => {
+  const { ability, isLoading, isError } = useGetAbilityPokemon(`ability/${name}`, name);
 
   if (isLoading) return <Loading />;
   if (isError) return <span>something wrong...</span>;
 
-  return <DetailAbility data={data} />;
+  return <DetailAbility data={ability} />;
 };
 
 export default Ability;

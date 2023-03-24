@@ -1,14 +1,13 @@
-import { useQuery } from "react-query";
-import { getDetailPokemonAPI } from "services/api";
 import { CardEvolution, Loading } from "components";
+import useSearchPokemon from "hooks/useSearchPokemon";
 
-const CardEvolutionContainer = ({ name, ...rest }) => {
-  const { data, isLoading, isError } =
-    useQuery(`evolution/${name}`, () => getDetailPokemonAPI(name));
+const CardEvolutionContainer = ({ name }) => {
+  const { pokemon, isLoading, isError } = useSearchPokemon(`evolution/${name}`, name);
+
   if (isLoading) return <Loading />;
   if (isError) return <span>This Pokemon doesn&apos;t have evolution</span>;
 
-  return <CardEvolution payload={data} />;
+  return <CardEvolution payload={pokemon} />;
 };
 
 export default CardEvolutionContainer;

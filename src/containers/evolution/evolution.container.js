@@ -1,15 +1,13 @@
-import { useQuery } from "react-query";
 import { Loading, ListEvolution } from "components";
-import { getEvolutionAPI } from "services/api";
+import useGetEvolutionPokemon from "hooks/useGetEvolutionPokemon";
 
 const Evolution = ({ url, name }) => {
-  const { data, isLoading, isError } =
-    useQuery(`list/evolution/${name}`, () => getEvolutionAPI(url));
+  const { evolutions, isLoading, isError  } = useGetEvolutionPokemon(`list/evolution/${name}`, url);
 
   if (isLoading) return <Loading />;
   if (isError) return <span>This Pokemon doesn&apos;t have evolution</span>;
 
-  return <ListEvolution data={data} />;
+  return <ListEvolution data={evolutions} />;
 };
 
 export default Evolution;

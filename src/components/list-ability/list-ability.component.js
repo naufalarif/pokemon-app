@@ -4,7 +4,7 @@ import isEmpty from "lodash/isEmpty";
 
 const ListAbility = ({ payload }) => {
   const displayAbility = !isEmpty(payload)
-    ? payload.abilities.map((item) => <Ability ability={item.ability.name}/>)
+    ? payload.abilities.map((item) => <Ability name={item.ability.name}/>)
     : <Loading />;
 
   return (
