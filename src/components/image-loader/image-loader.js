@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from './image-loader.module.css';
 
 const ImageLoader = (props) => {
-  const { src, width, height, alt, quality, className, onClick, fill, containerStyles } = props;
+  const { src, width, height, alt, quality, className, onClick, fill, containerStyles, ...rest } = props;
   
   const customLoader = () => `${src}?w=${width}&q=${quality || 75}`;
 
@@ -18,6 +18,7 @@ const ImageLoader = (props) => {
         width={width}
         height={height}
         alt={`${alt}`}
+        {...rest}
       />
     </div>
   );

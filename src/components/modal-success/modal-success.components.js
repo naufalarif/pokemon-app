@@ -10,7 +10,7 @@ const ModalSuccess = ({ isVisible, onClick }) => (
         height={200}
         alt="pikachu"
       />
-      <h3 className="text-3xl font-extrabold text-green-400">Success</h3>
+      <h3 className="text-3xl font-extrabold text-green-400" data-cy="success">Success</h3>
       <span className="text-gray-700 text-lg font-bold">You catch it!</span>
       <p className="text-gray-400 text-lg">Check your pokemon at My Pokemon.</p>
     </div>
@@ -19,6 +19,7 @@ const ModalSuccess = ({ isVisible, onClick }) => (
         type="button"
         onClick={onClick}
         className="px-4 py-2 rounded-xl bg-red-500text-gray-50 font-bold"
+        data-cy="close-modal"
       >
         Close
       </button>

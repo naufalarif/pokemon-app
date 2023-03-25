@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
 
 // Components
 import { Layout } from 'components';
@@ -33,14 +34,16 @@ const Home = () => {
               </span>
             </div>
             <div className="py-4">
-              <button
-                type="button"
-                className="rounded-3xl bg-blue-500 hover:bg-blue-700 py-2
-                  px-8 text-gray-50 focus:outline-none font-extrabold"
-                onClick={handleStart}
-              >
-                Catch Your Pokémon Now
-              </button>
+              <Link href="/adventure" data-cy="link-adventure">
+                <button
+                  type="button"
+                  className="rounded-3xl bg-blue-500 hover:bg-blue-700 py-2
+                    px-8 text-gray-50 focus:outline-none font-extrabold"
+                  // onClick={handleStart}
+                >
+                  Catch Your Pokémon Now
+                </button>
+              </Link>
             </div>
           </div>
 

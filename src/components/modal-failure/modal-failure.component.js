@@ -10,7 +10,7 @@ const ModalFailure = ({ isVisible, onClick }) => (
         height={200}
         alt="pikachu"
       />
-      <h3 className="text-3xl font-extrabold text-red-400">Failed</h3>
+      <h3 className="text-3xl font-extrabold text-red-400" data-cy="failed">Failed</h3>
       <span className="text-gray-700 text-lg font-bold">The Pokemon has running away!</span>
       <p className="text-gray-400 text-lg">Try to catch it again.</p>
     </div>
@@ -19,6 +19,7 @@ const ModalFailure = ({ isVisible, onClick }) => (
         type="button"
         onClick={onClick}
         className="px-4 py-2 rounded-xl bg-red-500 text-gray-50 font-bold"
+        data-cy="close-modal"
       >
         Try Again
       </button>

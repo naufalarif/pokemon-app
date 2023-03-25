@@ -88,7 +88,7 @@ export default function Pokemon({ params }) {
             <h4 className="text-2xl font-bold text-gray-400">
               {order}
             </h4>
-            <h2 className="text-5xl font-extrabold mb-2 capitalize">
+            <h2 className="text-5xl font-extrabold mb-2 capitalize" data-cy="name">
               {name}
             </h2>
             <div>{types}</div>
@@ -109,12 +109,12 @@ export default function Pokemon({ params }) {
             md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-7 pb-7 mb-1"
         >
           {/* Left */}
-          <div id="left">
+          <div id="left" data-cy="effect-list">
             <ListEffects payload={pokemon} />
           </div>
 
           {/* Right */}
-          <div id="right">
+          <div id="right" data-cy="information">
             <ListAbility payload={pokemon} />
             <Stats data={pokemon} />
             <Species name={species}/>

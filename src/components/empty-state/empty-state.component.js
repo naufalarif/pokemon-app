@@ -3,10 +3,12 @@ import Image from 'next/image';
 export default function EmptyState({ mine }) {
   const title = mine ? 'You have not Pokémon yet.' : 'You not ever catch Pokémon yet';
   return (
-    <div className="
-      flex flex-col justify-center items-center
-      rounded-xl bg-gray-200 shadow-2xl p-4
-    ">
+    <div
+      className="
+        flex flex-col justify-center items-center
+        rounded-xl bg-gray-200 shadow-2xl p-4"
+      data-cy="card-empty"
+    >
       <Image
         src="/imgs/pikachu.png"
         width={400}

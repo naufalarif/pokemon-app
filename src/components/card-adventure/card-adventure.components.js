@@ -125,16 +125,17 @@ export default function CardAdventure(props) {
       </div>
       
       <div className="text-center absolute bottom-0 left-0 right-0">
-          <ImageLoader
-            className="cursor-pointer"
-            containerStyles={styles.container}
-            onClick={handleGacha}
-            src="/imgs/pokeball.png"
-            alt="pokemon"
-            layout="fixed"
-            width={150}
-            height={150}
-          />
+        <ImageLoader
+          className="cursor-pointer"
+          containerStyles={styles.container}
+          onClick={handleGacha}
+          src="/imgs/pokeball.png"
+          alt="pokemon"
+          layout="fixed"
+          width={150}
+          height={150}
+          data-cy="pokeball"
+        />
       </div>
     </div>
   );

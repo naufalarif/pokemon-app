@@ -2,7 +2,7 @@ import get from "lodash/get";
 import { useInfiniteQuery } from "react-query";
 import { getAllPokemonAPI } from "services/api";
 
-export const useGetAllPokemon = () => {
+export default function useGetAllPokemon() {
   const { data, isError, isLoading, isSuccess, fetchNextPage } = useInfiniteQuery(
     [ 'pokemon' ],
     ({ pageParam }) => getAllPokemonAPI(pageParam),

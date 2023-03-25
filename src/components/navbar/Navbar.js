@@ -87,7 +87,7 @@ export default function Navbar({ active }) {
             md:justify-start md:space-x-10 px-4 sm:px-6"
         >
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <Link href="/">
+            <Link href="/" data-cy="menu-home">
               <Image
                 width={100}
                 height={45}
@@ -114,7 +114,7 @@ export default function Navbar({ active }) {
           {/* Desktop Version */}
           <nav id="desktop" className="hidden md:flex space-x-10">
             <div className="relative">
-              <Link href="/adventure">
+              <Link href="/adventure" data-cy="menu-adventure">
                 <button
                   type="button"
                   className={`group bg-white rounded-md ${activeAdventure}
@@ -129,7 +129,7 @@ export default function Navbar({ active }) {
             </div>
 
             <div className="relative">
-              <Link href="/pokedex">
+              <Link href="/pokedex" data-cy="menu-pokedex">
                 <button
                   type="button"
                   className={`group bg-white rounded-md ${activePokedex}
@@ -144,7 +144,7 @@ export default function Navbar({ active }) {
             </div>
 
             <div className="relative">
-              <Link href="/my-pokemon">
+              <Link href="/my-pokemon" data-cy="menu-my-pokemon">
                 <button
                   type="button"
                   className={`group bg-white rounded-md ${activeMyPokemon}
@@ -159,7 +159,7 @@ export default function Navbar({ active }) {
             </div>
 
             <div className="relative">
-              <Link href="/history">
+              <Link href="/history" data-cy="menu-history">
                 <button
                   type="button"
                   className={`group bg-white rounded-md ${activeHistory} 
@@ -178,7 +178,7 @@ export default function Navbar({ active }) {
         {/* Mobile Version */}
         <div className={`${mobileActive} sm:hidden`}>
           <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-100">
-            <Link href="/adventure">
+            <Link href="/adventure" data-cy="menu-adventure-mobile">
               <span
                 className={`${mobileAdventure} hover:text-blue-500 
                   block px-3 py-2 rounded-md text-base`}
@@ -186,7 +186,7 @@ export default function Navbar({ active }) {
                 Adventure
               </span>
             </Link>
-            <Link href="/pokedex">
+            <Link href="/pokedex" data-cy="menu-pokedex-mobile">
               <span
                 className={`${mobilePokedex} hover:text-blue-500 
                   block px-3 py-2 rounded-md text-base`}
@@ -194,7 +194,7 @@ export default function Navbar({ active }) {
                 Pokédex
               </span>
             </Link>
-            <Link href="/my-pokemon">
+            <Link href="/my-pokemon" data-cy="menu-my-pokemon-mobile">
               <span
                 className={`${mobileMyPokemon} hover:text-blue-500
                   block px-3 py-2 rounded-md text-base`}
@@ -202,7 +202,7 @@ export default function Navbar({ active }) {
                 My Pokémon
               </span>
             </Link>
-            <Link href="/history">
+            <Link href="/history" data-cy="menu-history-mobile">
               <span
                 className={`${mobileHistory} hover:text-blue-500
                   block px-3 py-2 rounded-md text-base`}

@@ -4,6 +4,9 @@ import { ImageLoader } from 'components';
 // Utils
 import { dateUtils, removeSymbol, extractTypes, imageConvert } from "utils";
 
+// Styles
+import styles from './card-history.module.css';
+
 export default function CardHistory({ payload }) {
   const { data } = payload;
 
@@ -39,11 +42,13 @@ export default function CardHistory({ payload }) {
       </div>;
 
   return (
-    <div className="flex grid relative
-      grid-cols-1 lg:grid-cols-3
-      gap-2 md:gap-4 pb-2 mb-1
-      bg-gray-100 rounded-xl p-4 mx-2 mb-4 cursor-pointer hover:shadow-2xl
-    ">
+    <div
+      className="flex grid relative
+        grid-cols-1 lg:grid-cols-3
+        gap-2 md:gap-4 pb-2 mb-1
+        bg-gray-100 rounded-xl p-4 mx-2 mb-4 cursor-pointer hover:shadow-2xl"
+      data-cy="card-history"
+    >
       <div className="lg:hidden absolute top-1 right-1">
         <h4 className="font-extrabold text-gray-500 text-sm mr-2">{dateUtils(payload.date)}</h4>
       </div>
@@ -53,6 +58,7 @@ export default function CardHistory({ payload }) {
           alt="Pokemon"
           width={100}
           height={100}
+          containerStyles={styles.container}
         />
       </div>
       <div className="text-center">

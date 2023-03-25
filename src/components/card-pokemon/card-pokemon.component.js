@@ -28,8 +28,6 @@ export default function CardPokemon({ payload }) {
     );
   });
 
-  const myLoader = ({ src, width, quality }) => `${src}?w=${width}&q=${quality || 75}`;
-
   const handleNavigation = () => {
     router.push({ pathname: `/pokemon/${payload.name}` });
   };
@@ -39,6 +37,7 @@ export default function CardPokemon({ payload }) {
       className={`bg-gray-100 rounded-xl 
         p-4 mx-2 mb-4 cursor-pointer hover:shadow-2xl`}
       onClick={handleNavigation}
+      data-cy={`pokemon-${name}`}
     >
       <ImageLoader
         src={`${img}`}
